@@ -44,9 +44,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8885441119679597757}
-  - component: {fileID: 928573147679418317}
   - component: {fileID: 652641740161704358}
   - component: {fileID: 1190610017}
+  - component: {fileID: 1391005239}
   m_Layer: 0
   m_Name: Car
   m_TagString: Untagged
@@ -71,21 +71,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &928573147679418317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815614871030044812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6f8e9fcfce228e46b4480ff019fb5fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  axleInfos: []
-  maxMotorTorque: 0
-  maxSteeringAngle: 0
 --- !u!114 &652641740161704358
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,7 +92,7 @@ MonoBehaviour:
     rightWheel: {fileID: 1590477205374085729}
     motor: 0
     steering: 0
-  maxMotorTorque: 1500
+  maxMotorTorque: 400
   maxSteeringAngle: 30
 --- !u!54 &1190610017
 Rigidbody:
@@ -125,6 +110,24 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1391005239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1657e817292b6f47b9c2a8e0250e70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftBlinkers:
+  - {fileID: 404300529824775521}
+  - {fileID: 4537352214248366088}
+  rightBlinkers:
+  - {fileID: 2945839301424505743}
+  - {fileID: 6031075405682383346}
 --- !u!1001 &4066043203789580998
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -249,6 +252,26 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+--- !u!108 &404300529824775521 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 5888638160220037953, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &2945839301424505743 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 8990663944834547119, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &4537352214248366088 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 7697515743211404840, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &6031075405682383346 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 546720221755836370, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8971046860715063225 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2908049459055258009, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
