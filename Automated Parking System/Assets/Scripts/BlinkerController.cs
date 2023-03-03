@@ -25,7 +25,6 @@ public class BlinkerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(left + " " + right);
         if(left)
         {
             if(counterLeft >= 0.7)
@@ -57,6 +56,8 @@ public class BlinkerController : MonoBehaviour
     {
         left = !left;
         right = false;
+        foreach (Light light in rightBlinkers)
+            light.enabled = false;
         counterLeft = 0;
     }
 
@@ -64,6 +65,8 @@ public class BlinkerController : MonoBehaviour
     {
         right = !right;
         left = false;
+        foreach (Light light in leftBlinkers)
+            light.enabled = false;
         counterRight = 0;
     }
 }

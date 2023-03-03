@@ -16,13 +16,14 @@ public class CameraController : MonoBehaviour
     {
         if (birdView)
         {
-            transform.position = car.position + new Vector3(0, 7, -12);
-            transform.rotation = Quaternion.Euler(30, 0, 0);
+            transform.SetPositionAndRotation(car.position + new Vector3(0, 7, -12), Quaternion.Euler(30, 0, 0));
         }
         else
         {
-            transform.position = car.position + new Vector3(0, 1.2f, 0);
-            transform.rotation = car.rotation;
+            
+            transform.position = car.position + new Vector3(-0.3f, 1.1f, 0.1f);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.RotateAround(car.position, new Vector3(0, 1, 0), car.rotation.eulerAngles.y);
         }
     }
 
