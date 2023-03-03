@@ -58,6 +58,19 @@ public class BlinkerController : MonoBehaviour
         right = false;
         foreach (Light light in rightBlinkers)
             light.enabled = false;
+
+        if(!left)
+        {
+            foreach (Light light in leftBlinkers)
+                light.enabled = false;
+        }
+        else
+        {
+            foreach (Light light in leftBlinkers)
+                light.enabled = true;
+            on = false;
+        }
+
         counterLeft = 0;
     }
 
@@ -67,6 +80,19 @@ public class BlinkerController : MonoBehaviour
         left = false;
         foreach (Light light in leftBlinkers)
             light.enabled = false;
+
+        if (!right)
+        {
+            foreach (Light light in rightBlinkers)
+                light.enabled = false;
+        }
+        else
+        {
+            foreach (Light light in rightBlinkers)
+                light.enabled = true;
+            on = false;
+        }
+
         counterRight = 0;
     }
 }
