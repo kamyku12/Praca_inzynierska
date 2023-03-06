@@ -5,25 +5,26 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     bool birdView;
-    public Transform car;
+    public Transform car, birdCamera, povCamera;
 
     void Start()
     {
         birdView = true;
+        birdCamera = car.GetChild(0);
+        povCamera = car.GetChild(1);
     }
 
     void Update()
     {
         if (birdView)
         {
-            transform.SetPositionAndRotation(car.position + new Vector3(0, 7, -12), Quaternion.Euler(30, 0, 0));
+            // Ustaw pozycjê i rotacje kamery na punkt w prefabie oraz rotacje na rotacje auta na osi y i pochyl j¹ o 45 stopni do przodu
+            transform.SetPositionAndRotation(birdCamera.position, Quaternion.Euler(45, car.rotation.eulerAngles.y, 0));
         }
         else
         {
-            
-            transform.position = car.position + new Vector3(-0.3f, 1.1f, 0.1f);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-            transform.RotateAround(car.position, new Vector3(0, 1, 0), car.rotation.eulerAngles.y);
+            // Ustaw pozycjê i rotacje kamery na punkt w prefabie oraz rotacje na rotacje auta na osi y
+            transform.SetPositionAndRotation(povCamera.position, Quaternion.Euler(0, car.rotation.eulerAngles.y, 0));
         }
     }
 
