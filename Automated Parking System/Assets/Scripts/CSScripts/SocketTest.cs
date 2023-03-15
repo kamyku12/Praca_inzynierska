@@ -17,18 +17,27 @@ public class SocketTest : MonoBehaviour
     TcpClient client;
     Vector3 receivedPos  = Vector3.zero;
 
-    bool running;
+    bool running, started = false;
 
     void Update()
     {
-        transform.position = receivedPos;
+        if(started)
+        {
+            transform.position = receivedPos;
+        }
     }
 
     private void Start()
     {
+        started = false;
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
+    }
+
+    private void OnApplicationQuit()
+    {
+        mThread.Abort();
     }
 
     void GetInfo()
@@ -54,8 +63,15 @@ public class SocketTest : MonoBehaviour
 
         int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
         string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+        print(dataReceived);
 
-        if(dataReceived != null)
+
+        if (!started)
+        {
+            byte[] data = Encoding.ASCII.GetBytes("start");
+            nwStream.Write(data, 0, data.Length);
+        }
+        else if(dataReceived != null)
         {
             receivedPos = StringToVector3(dataReceived);
             print("received pos data, and moved the Cube");
@@ -63,6 +79,9 @@ public class SocketTest : MonoBehaviour
             byte[] myWriteBuffer = Encoding.ASCII.GetBytes("hey i got your message");
             nwStream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
         }
+        
+        if (dataReceived.Equals("started"))
+            started = true;
     }
 
     static Vector3 StringToVector3(string sVector)
