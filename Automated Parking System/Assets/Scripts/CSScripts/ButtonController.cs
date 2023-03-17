@@ -8,11 +8,13 @@ public class ButtonController : MonoBehaviour
     public Transform car;
     CameraController cameraController;
     BlinkerController blinkerController;
+    CarController carController;
     private void Start()
     {
         cam = Camera.main;
         cameraController = cam.GetComponent<CameraController>();
         blinkerController = car.GetComponent<BlinkerController>();
+        carController = car.GetComponent<CarController>();
     }
 
     public void ChangeView()
@@ -28,5 +30,10 @@ public class ButtonController : MonoBehaviour
     public void RightBlinker()
     {
         blinkerController.RightBlinker();
+    }
+
+    public void ChangeDrivingMode()
+    {
+        carController.ChangeDrivingMode();
     }
 }

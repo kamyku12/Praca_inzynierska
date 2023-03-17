@@ -46,6 +46,27 @@ def move_cube(sock, startPos):
     return True
 
 
+def move_car(sock, last_steering, up_down):
+    time.sleep(0.025)
+    motor = 0.5
+    steering = last_steering + 0.05 * up_down
+
+    if steering >= 1:
+        up_down = -1
+    elif steering <= -1:
+        up_down = 1
+
+    data_to_send = "|".join(map(str, [motor, steering]))
+    print(data_to_send)
+    sock.sendall(data_to_send.encode("UTF-8"))
+
+    received_data = sock.recv(1024).decode("UTF-8")
+    if received_data == "stop":
+        return None
+
+    return steering, up_down
+
+
 if __name__ == "__main__":
     paused = True
     stopped = False
@@ -53,6 +74,8 @@ if __name__ == "__main__":
     host, port = "127.0.0.1", 25001
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(3)
+    steering = 0
+    up_down = 1
 
     print("Now start Unity simulator!")
     connect(sock, host, port)
@@ -65,7 +88,8 @@ if __name__ == "__main__":
             paused, initializing = initialize()
         else:
             if not paused:
-                if not move_cube(sock, startPos):
+                steering, up_down = move_car(sock, steering, up_down)
+                if steering is None:
                     break
 
     sock.sendall("stop".encode("UTF-8"))

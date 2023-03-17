@@ -7,7 +7,17 @@ public class CarController : MonoBehaviour
     public List<AxleInfo> axleInfos;
     public float maxMotorTorque;
     public float maxSteeringAngle;
+    float recievedMotor;
+    float recievedSteering;
+    bool selfDriving;
+    SelfDriving sd;
 
+
+    public void Awake()
+    {
+        selfDriving = false;
+        sd = GetComponent<SelfDriving>();
+    }
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
     {
@@ -28,8 +38,18 @@ public class CarController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        float motor = maxMotorTorque * Input.GetAxis("Vertical");
-        float steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+        float motor;
+        float steering;
+        if (!selfDriving)
+        {
+            motor = maxMotorTorque * Input.GetAxis("Vertical");
+            steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+        }
+        else
+        {
+            motor = maxMotorTorque * sd.GetMotor();
+            steering = maxSteeringAngle * sd.GetSteering();
+        }
 
         foreach(AxleInfo axleInfo in axleInfos)
         {
@@ -46,6 +66,11 @@ public class CarController : MonoBehaviour
             ApplyLocalPositionToVisuals(axleInfo.leftWheel);
             ApplyLocalPositionToVisuals(axleInfo.rightWheel);
         }
+    }
+
+    public void ChangeDrivingMode()
+    {
+        selfDriving = !selfDriving;
     }
 }
 
