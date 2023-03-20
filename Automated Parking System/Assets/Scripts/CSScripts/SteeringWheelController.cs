@@ -21,6 +21,6 @@ public class SteeringWheelController : MonoBehaviour
 
     void Update()
     {
-        transform.eulerAngles = new Vector3(transform.parent.rotation.eulerAngles.x, transform.parent.eulerAngles.y, -(Input.GetAxis("Horizontal") * 180));
+        transform.eulerAngles = new Vector3(transform.parent.rotation.eulerAngles.x, transform.parent.eulerAngles.y, -(carController.steering / maxAngle * 180));
     }
 }

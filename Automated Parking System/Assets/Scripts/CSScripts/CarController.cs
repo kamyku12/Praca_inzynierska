@@ -7,8 +7,8 @@ public class CarController : MonoBehaviour
     public List<AxleInfo> axleInfos;
     public float maxMotorTorque;
     public float maxSteeringAngle;
-    float recievedMotor;
-    float recievedSteering;
+    public float motor;
+    public float steering;
     bool selfDriving;
     SelfDriving sd;
 
@@ -38,8 +38,6 @@ public class CarController : MonoBehaviour
 
     public void FixedUpdate()
     {
-        float motor;
-        float steering;
         if (!selfDriving)
         {
             motor = maxMotorTorque * Input.GetAxis("Vertical");
