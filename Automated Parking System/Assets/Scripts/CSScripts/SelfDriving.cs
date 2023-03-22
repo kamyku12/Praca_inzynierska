@@ -6,6 +6,8 @@ using System.Text;
 using System.Threading;
 using UnityEngine;
 using System.Globalization;
+using System.Diagnostics;
+using System.IO;
 
 public class SelfDriving : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class SelfDriving : MonoBehaviour
     bool running, started = false;
     private void Start()
     {
+        var proc = new Process();
+        proc.StartInfo.FileName = "pythonProject\\self_driving.py";
+        proc.Start();
         started = false;
         ThreadStart ts = new ThreadStart(GetInfo);
         mThread = new Thread(ts);
@@ -29,7 +34,8 @@ public class SelfDriving : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        mThread.Abort();
+        if(mThread != null)
+            mThread.Abort();
     }
 
 

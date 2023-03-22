@@ -9,12 +9,15 @@ public class CarController : MonoBehaviour
     public float maxSteeringAngle;
     public float motor;
     public float steering;
+    public float brakeStrength;
     bool selfDriving;
+    bool brake;
     SelfDriving sd;
 
 
     public void Awake()
     {
+        brake = false;
         selfDriving = false;
         sd = GetComponent<SelfDriving>();
     }
@@ -38,10 +41,12 @@ public class CarController : MonoBehaviour
 
     public void FixedUpdate()
     {
+        Debug.Log(brake);
         if (!selfDriving)
         {
             motor = maxMotorTorque * Input.GetAxis("Vertical");
             steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+            brake = Input.GetKey(KeyCode.Space);
         }
         else
         {
@@ -60,6 +65,11 @@ public class CarController : MonoBehaviour
             {
                 axleInfo.leftWheel.motorTorque = motor;
                 axleInfo.rightWheel.motorTorque = motor;
+                if (brake)
+                {
+                    axleInfo.leftWheel.brakeTorque = brakeStrength;
+                    axleInfo.rightWheel.brakeTorque = brakeStrength;
+                }
             }
             ApplyLocalPositionToVisuals(axleInfo.leftWheel);
             ApplyLocalPositionToVisuals(axleInfo.rightWheel);

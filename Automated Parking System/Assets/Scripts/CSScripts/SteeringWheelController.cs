@@ -14,8 +14,11 @@ public class SteeringWheelController : MonoBehaviour
         maxAngle = carController.maxSteeringAngle;
         foreach (AxleInfo ainfo in carController.axleInfos)
         {
-            if (ainfo.steering)
+            if (ainfo.steering) 
+            {
                 wheel = ainfo.rightWheel.gameObject.transform.GetChild(0);
+                break;
+            }
         }
     }
 
