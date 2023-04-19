@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
     bool birdView;
-    public Transform car, birdCamera, povCamera;
+    public Transform car;
+    private Transform birdCamera, povCamera;
 
     void Start()
     {

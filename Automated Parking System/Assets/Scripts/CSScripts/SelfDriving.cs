@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Net;
 using System.Text;
@@ -7,7 +5,6 @@ using System.Threading;
 using UnityEngine;
 using System.Globalization;
 using System.Diagnostics;
-using System.IO;
 
 public class SelfDriving : MonoBehaviour
 {
@@ -24,7 +21,9 @@ public class SelfDriving : MonoBehaviour
     private void Start()
     {
         var proc = new Process();
-        proc.StartInfo.FileName = "pythonProject\\self_driving.py";
+        string path = Application.dataPath + "/Scripts/PythonScripts/self_driving.py";
+        UnityEngine.Debug.Log(path);
+        proc.StartInfo.FileName = path;
         proc.Start();
         started = false;
         ThreadStart ts = new ThreadStart(GetInfo);
