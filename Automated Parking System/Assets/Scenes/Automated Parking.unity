@@ -570,8 +570,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   car: {fileID: 1825178953}
-  birdCamera: {fileID: 0}
-  povCamera: {fileID: 0}
 --- !u!4 &384644654 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 906385121259992249, guid: fd17f464ad1455a44bda9cb5935bd0d1, type: 3}
@@ -663,6 +661,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7172206244793792890, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: leftBlinker
+      value: 
+      objectReference: {fileID: 1565116972}
+    - target: {fileID: 7172206244793792890, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: posibleParkingSpot
+      value: 
+      objectReference: {fileID: 1066074055214906538, guid: a0bf63d661517814c9a2b4ed16413838, type: 3}
+    - target: {fileID: 8643523282037257277, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8643523282037257277, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8815614871030044812, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_Name
       value: MainCar
@@ -2157,6 +2171,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 906385121259992249, guid: fd17f464ad1455a44bda9cb5935bd0d1, type: 3}
   m_PrefabInstance: {fileID: 1100110398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &1565116972 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 404300529824775521, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1654707983 stripped
 Transform:
