@@ -248,6 +248,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 721f3e5f3a63d674684c063dc66b2fd9, type: 2}
   - {fileID: 2100000, guid: fe038ca5d7211594e91b445a65170564, type: 2}
   leftBlinker: {fileID: 1223067519678536638}
+  posibleParkingSpot: {fileID: 0}
 --- !u!1 &8848951142523869262
 GameObject:
   m_ObjectHideFlags: 0

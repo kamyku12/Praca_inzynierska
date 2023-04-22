@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - possibleParkingSpot
+  - taken
+  - notTaken
   layers:
   - Default
   - TransparentFX
@@ -11,7 +14,7 @@ TagManager:
   - Cars
   - Water
   - UI
-  - 
+  - ParkingSpot
   - 
   - 
   - 

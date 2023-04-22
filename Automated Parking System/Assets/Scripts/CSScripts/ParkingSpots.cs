@@ -6,12 +6,12 @@ using Random = System.Random;
 
 public class ParkingSpots : MonoBehaviour
 {
-    public Transform[] parkingSpots;
+    public GameObject[] parkingSpots;
     public GameObject car;
     void Awake()
     {
         Random rnd = new Random(Guid.NewGuid().GetHashCode());
-        foreach (Transform spot in parkingSpots)
+        foreach (GameObject spot in parkingSpots)
         {
             // Prawdopodobieñstwo ustawienia auta na danym miejscu parkingowym wynosi 80%
             if (rnd.NextDouble() <= 0.8)
@@ -21,7 +21,8 @@ public class ParkingSpots : MonoBehaviour
 
                 // Prawdopodobieñstwo przesuniêcia siê auta wynosi 20%
                 float offset = rnd.NextDouble() <= 0.2 ? (float)(rnd.NextDouble() * 1.5 + 0.5) : 0;
-                Instantiate(car, spot.position + new Vector3(offset, 0.14f, 0), Quaternion.identity);
+                Instantiate(car, spot.transform.position + new Vector3(offset, 0.14f, 0), Quaternion.identity);
+                spot.tag = "taken";
             }
         }
     }
