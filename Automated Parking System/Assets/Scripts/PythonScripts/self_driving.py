@@ -29,23 +29,6 @@ def initialize():
     return True, True
 
 
-def move_cube(sock, startPos):
-    time.sleep(0.025)
-    startPos[np.random.randint(0, 3)] += np.random.randint(-1, 2)
-    posString = ','.join(map(str, startPos))
-    print(posString)
-
-    sock.sendall(posString.encode("UTF-8"))
-    try:
-        received_data = sock.recv(1024).decode("UTF-8")
-        if received_data == "stop":
-            return False
-    except:
-        return False
-    print(received_data)
-    return True
-
-
 def move_car(sock, last_steering, up_down):
     time.sleep(0.025)
     motor = 0.5
@@ -76,6 +59,7 @@ if __name__ == "__main__":
     sock.settimeout(3)
     steering = 0
     up_down = 1
+    stop = 1
 
     print("Now start Unity simulator!")
     connect(sock, host, port)

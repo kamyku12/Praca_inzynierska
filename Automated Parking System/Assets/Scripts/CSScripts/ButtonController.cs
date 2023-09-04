@@ -1,26 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ButtonController : MonoBehaviour
 {
-    Camera cam;
-    public Transform car;
-    CameraController cameraController;
-    BlinkerController blinkerController;
-    CarController carController;
-    ParkingSpotChecker parkingSpotChecker;
-    GameObject possibleParkingSpot;
-    [SerializeField] public GameObject lookForSpotButton;
-    private void Start()
-    {
-        cam = Camera.main;
-        cameraController = cam.GetComponent<CameraController>();
-        blinkerController = car.GetComponent<BlinkerController>();
-        carController = car.GetComponent<CarController>();
-        parkingSpotChecker = car.GetComponent<ParkingSpotChecker>();
-    }
+    public CameraController cameraController;
+    public BlinkerController blinkerController;
+    public CarController carController;
+    public ParkingSpotChecker parkingSpotChecker;
+    public SelfDriving selfDriving;
+    [SerializeField] private GameObject lookForSpotButton;
 
     public void ChangeView()
     {
@@ -41,6 +29,7 @@ public class ButtonController : MonoBehaviour
 
     public void ChangeDrivingMode()
     {
+        selfDriving.StartStop();
         carController.ChangeDrivingMode();
     }
 

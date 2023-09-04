@@ -8,32 +8,35 @@ using System.Diagnostics;
 
 public class SelfDriving : MonoBehaviour
 {
-    float recievedMotor;
-    float recievedSteering;
-    
+    float receivedMotor;
+    float receivedSteering;
+    float receivedBreaking;
+
     Thread mThread;
     public string connectionIp = "127.0.0.1";
     public int connectionPort = 25001;
     IPAddress localAdd;
     TcpListener listener;
     TcpClient client;
-    bool running, started = false;
+    bool running, started, stop;
+    Process proc;
+
     private void Start()
     {
-        var proc = new Process();
+        proc = new Process();
         string path = Application.dataPath + "/Scripts/PythonScripts/self_driving.py";
         UnityEngine.Debug.Log(path);
         proc.StartInfo.FileName = path;
         proc.Start();
         started = false;
-        ThreadStart ts = new ThreadStart(GetInfo);
+        ThreadStart ts = new(GetInfo);
         mThread = new Thread(ts);
         mThread.Start();
     }
 
     private void OnApplicationQuit()
     {
-        if(mThread != null)
+        if (mThread != null)
             mThread.Abort();
     }
 
@@ -61,7 +64,7 @@ public class SelfDriving : MonoBehaviour
 
         int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
         string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
-        
+
 
 
         if (!started)
@@ -69,12 +72,22 @@ public class SelfDriving : MonoBehaviour
             byte[] data = Encoding.ASCII.GetBytes("start");
             nwStream.Write(data, 0, data.Length);
         }
-        else if (dataReceived != null)
+        else
+        {
+            if (stop)
+            {
+                byte[] data = Encoding.ASCII.GetBytes("stop");
+                nwStream.Write(data, 0, data.Length);
+            }
+        }
+
+        if (started && dataReceived != null)
         {
             float[] parsedData = ParseData(dataReceived);
             print(parsedData);
-            recievedMotor = parsedData[0];
-            recievedSteering = parsedData[1];
+            receivedMotor = parsedData[0];
+            receivedSteering = parsedData[1];
+            receivedBreaking = parsedData[2];
             print("received motor and steering, moving Car...");
 
             byte[] myWriteBuffer = Encoding.ASCII.GetBytes("ok");
@@ -92,7 +105,15 @@ public class SelfDriving : MonoBehaviour
         string[] sArray = data.Split("|");
         float motor = float.Parse(sArray[0], CultureInfo.InvariantCulture.NumberFormat);
         float steering = float.Parse(sArray[1], CultureInfo.InvariantCulture.NumberFormat);
-        return new float[] { motor, steering };
+        float breaking = float.Parse(sArray[2], CultureInfo.InvariantCulture.NumberFormat);
+        return new float[] { motor, steering, breaking };
+    }
+
+
+    private void HandleDataReceived()
+    {
+        //To Do
+
     }
 
     /*
@@ -112,11 +133,21 @@ public class SelfDriving : MonoBehaviour
 
     public float GetMotor()
     {
-        return recievedMotor;
+        return receivedMotor;
     }
 
     public float GetSteering()
     {
-        return recievedSteering;
+        return receivedSteering;
+    }
+
+    public float GetBreak()
+    {
+        return receivedBreaking;
+    }
+
+    public void StartStop()
+    {
+        stop = !stop;
     }
 }

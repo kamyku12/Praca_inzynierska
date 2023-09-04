@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Random = System.Random;
 
@@ -13,13 +11,13 @@ public class ParkingSpots : MonoBehaviour
         Random rnd = new Random(Guid.NewGuid().GetHashCode());
         foreach (GameObject spot in parkingSpots)
         {
-            // Prawdopodobieñstwo ustawienia auta na danym miejscu parkingowym wynosi 80%
+            // Probability of generating car in given spot is 80%
             if (rnd.NextDouble() <= 0.8)
             {
-                // Prawdopodobieñstwo przesuniêcia w lewo czy w prawo wynosi 50%
+                // Probability of moving cat to the left is 50%
                 int lr = rnd.NextDouble() <= 0.3 ? 1 : -1;
 
-                // Prawdopodobieñstwo przesuniêcia siê auta wynosi 20%
+                // Probability of moving car is 20%
                 float offset = rnd.NextDouble() <= 0.2 ? (float)(rnd.NextDouble() * 1.5 + 0.5) : 0;
                 Instantiate(car, spot.transform.position + new Vector3(offset, 0.14f, 0), Quaternion.identity);
                 spot.tag = "taken";

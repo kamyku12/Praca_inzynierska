@@ -585,6 +585,16 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 906385121259992249, guid: fd17f464ad1455a44bda9cb5935bd0d1, type: 3}
   m_PrefabInstance: {fileID: 1174073784}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &396612250 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 6699459391889238307, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &479664828 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 1429525631964178112, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &579138319 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8207816640861898015, guid: fd17f464ad1455a44bda9cb5935bd0d1, type: 3}
@@ -686,6 +696,26 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 652641740161704358, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: sd
+      value: 
+      objectReference: {fileID: 1825178955}
+    - target: {fileID: 652641740161704358, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: brakeStrength
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 652641740161704358, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: brakeLights.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 652641740161704358, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: brakeLights.Array.data[0]
+      value: 
+      objectReference: {fileID: 479664828}
+    - target: {fileID: 652641740161704358, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: brakeLights.Array.data[1]
+      value: 
+      objectReference: {fileID: 396612250}
     - target: {fileID: 999245090917298884, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -891,12 +921,20 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1.0000002
+      objectReference: {fileID: 0}
+    - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -26.85342
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.15
+      value: 0.14999962
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -908,7 +946,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalRotation.y
@@ -916,7 +954,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2859,6 +2897,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
   m_PrefabInstance: {fileID: 825981397}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1825178954 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7172206244793792890, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b60585367a0f7b458be293c5796e0ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1825178955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8287835178743516613, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e7acc4e532d5e0c44a320bea9c885937, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1825178956 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1391005239, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1657e817292b6f47b9c2a8e0250e70d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1825178958 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 652641740161704358, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 825981397}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6f8e9fcfce228e46b4480ff019fb5fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1852406186 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8207816640861898015, guid: fd17f464ad1455a44bda9cb5935bd0d1, type: 3}
@@ -3873,7 +3955,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 38423aedb7dec45479e11cc811b629f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  car: {fileID: 1825178953}
+  cameraController: {fileID: 340891448}
+  blinkerController: {fileID: 1825178956}
+  carController: {fileID: 1825178958}
+  parkingSpotChecker: {fileID: 1825178954}
+  selfDriving: {fileID: 1825178955}
   lookForSpotButton: {fileID: 1542188461}
 --- !u!1 &2115740951 stripped
 GameObject:

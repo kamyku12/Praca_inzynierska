@@ -18,10 +18,8 @@ public class ParkingSpotChecker : MonoBehaviour
     public bool rightSpotInstantiate, leftSpotInstantiate, lookForSpot, leftSide, parkingSpot;
     void Start()
     {
-        parkingSpot = false;
         placeToSetPossibleParkingSpot = Vector3.zero;
         rightSpotInstantiate = leftSpotInstantiate = true;
-        lookForSpot = leftSide = false;
         carParameters = transform.GetChild(3).GetComponent<MeshFilter>().mesh.bounds.extents;
     }
 
@@ -113,7 +111,7 @@ public class ParkingSpotChecker : MonoBehaviour
                 if (distanceToSpot <= 6.0f)
                 {
                     parkingSpot = true;
-                    placeToSetPossibleParkingSpot = pSpot.transform.position;
+                    placeToSetPossibleParkingSpot = hitForParkingSpot.point - new Vector3(0f, 0.5f, 0f);
                 }
             }
         }

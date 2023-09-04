@@ -9,22 +9,63 @@ public class CarController : MonoBehaviour
     public float maxSteeringAngle;
     public float motor;
     public float steering;
-    public float brakeStrength;
+    [SerializeField] public float brakeStrength;
+    public Light[] brakeLights;
     bool selfDriving;
-    bool brake;
-    SelfDriving sd;
+    public bool brake;
+    public SelfDriving sd;
 
-
-    public void Awake()
+    public void FixedUpdate()
     {
-        brake = false;
-        selfDriving = false;
-        sd = GetComponent<SelfDriving>();
+        ApplyControl();
+
+        RotateWheels();
+
+        BrakeLights();
+    }
+    
+    private void ApplyControl()
+    {
+        if (!selfDriving)
+        {
+            motor = maxMotorTorque * Input.GetAxis("Vertical");
+            steering = maxSteeringAngle * Input.GetAxis("Horizontal");
+
+            brake = Input.GetKey(KeyCode.Space);
+        }
+        else
+        {
+            motor = maxMotorTorque * sd.GetMotor();
+            steering = maxSteeringAngle * sd.GetSteering();
+        }
+    }
+
+    private void RotateWheels()
+    {
+        foreach (AxleInfo axleInfo in axleInfos)
+        {
+            if (axleInfo.steering)
+            {
+                axleInfo.leftWheel.steerAngle = steering;
+                axleInfo.rightWheel.steerAngle = steering;
+            }
+            if (axleInfo.motor)
+            {
+                axleInfo.leftWheel.motorTorque = motor;
+                axleInfo.rightWheel.motorTorque = motor;
+
+                // Jesli brake == true, naloz brakeStrength, inaczej ustaw na 0
+                axleInfo.leftWheel.brakeTorque = brake ? brakeStrength : 0;
+                axleInfo.rightWheel.brakeTorque = brake ? brakeStrength : 0;
+            }
+            ApplyLocalPositionToVisuals(axleInfo.leftWheel);
+            ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+        }
     }
 
     public void ApplyLocalPositionToVisuals(WheelCollider collider)
     {
-        if(collider.transform.childCount == 0)
+        if (collider.transform.childCount == 0)
         {
             return;
         }
@@ -39,40 +80,11 @@ public class CarController : MonoBehaviour
         visualWheel.transform.rotation = rotation;
     }
 
-    public void FixedUpdate()
+    private void BrakeLights()
     {
-        Debug.Log(brake);
-        if (!selfDriving)
+        foreach (var light in brakeLights)
         {
-            motor = maxMotorTorque * Input.GetAxis("Vertical");
-            steering = maxSteeringAngle * Input.GetAxis("Horizontal");
-            brake = Input.GetKey(KeyCode.Space);
-        }
-        else
-        {
-            motor = maxMotorTorque * sd.GetMotor();
-            steering = maxSteeringAngle * sd.GetSteering();
-        }
-
-        foreach(AxleInfo axleInfo in axleInfos)
-        {
-            if(axleInfo.steering)
-            {
-                axleInfo.leftWheel.steerAngle = steering;
-                axleInfo.rightWheel.steerAngle = steering;
-            }
-            if(axleInfo.motor)
-            {
-                axleInfo.leftWheel.motorTorque = motor;
-                axleInfo.rightWheel.motorTorque = motor;
-                if (brake)
-                {
-                    axleInfo.leftWheel.brakeTorque = brakeStrength;
-                    axleInfo.rightWheel.brakeTorque = brakeStrength;
-                }
-            }
-            ApplyLocalPositionToVisuals(axleInfo.leftWheel);
-            ApplyLocalPositionToVisuals(axleInfo.rightWheel);
+            light.enabled = brake;
         }
     }
 
@@ -80,6 +92,8 @@ public class CarController : MonoBehaviour
     {
         selfDriving = !selfDriving;
     }
+
+    
 }
 
 [System.Serializable]
