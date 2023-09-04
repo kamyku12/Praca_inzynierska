@@ -141,7 +141,7 @@ public class SelfDriving : MonoBehaviour
         return receivedSteering;
     }
 
-    public float GetBreak()
+    public float GetBrake()
     {
         return receivedBreaking;
     }

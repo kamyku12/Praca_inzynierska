@@ -29,17 +29,17 @@ def initialize():
     return True, True
 
 
-def move_car(sock, last_steering, up_down):
+def move_car(sock, last_steering, up_down, braking):
     time.sleep(0.025)
     motor = 0.5
-    steering = last_steering + 0.05 * up_down
+    steering = 0 if braking else last_steering + 0.05 * up_down
 
     if steering >= 1:
         up_down = -1
     elif steering <= -1:
         up_down = 1
 
-    data_to_send = "|".join(map(str, [motor, steering]))
+    data_to_send = "|".join(map(str, [motor, steering, braking]))
     print(data_to_send)
     sock.sendall(data_to_send.encode("UTF-8"))
 
@@ -47,7 +47,7 @@ def move_car(sock, last_steering, up_down):
     if received_data == "stop":
         return None
 
-    return steering, up_down
+    return steering, up_down, braking
 
 
 if __name__ == "__main__":
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     sock.settimeout(3)
     steering = 0
     up_down = 1
-    stop = 1
+    brake = 1
 
     print("Now start Unity simulator!")
     connect(sock, host, port)
@@ -72,7 +72,7 @@ if __name__ == "__main__":
             paused, initializing = initialize()
         else:
             if not paused:
-                steering, up_down = move_car(sock, steering, up_down)
+                steering, up_down, brake = move_car(sock, steering, up_down, brake)
                 if steering is None:
                     break
 

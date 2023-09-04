@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +9,8 @@ public class CarController : MonoBehaviour
     public float maxSteeringAngle;
     public float motor;
     public float steering;
-    [SerializeField] public float brakeStrength;
+    public bool breaking;
+    public float brakeStrength;
     public Light[] brakeLights;
     bool selfDriving;
     public bool brake;
@@ -37,6 +38,8 @@ public class CarController : MonoBehaviour
         {
             motor = maxMotorTorque * sd.GetMotor();
             steering = maxSteeringAngle * sd.GetSteering();
+
+            brake = Convert.ToBoolean(sd.GetBrake()); 
         }
     }
 
@@ -54,7 +57,7 @@ public class CarController : MonoBehaviour
                 axleInfo.leftWheel.motorTorque = motor;
                 axleInfo.rightWheel.motorTorque = motor;
 
-                // Jesli brake == true, naloz brakeStrength, inaczej ustaw na 0
+                // If brake == true, set brakeStrength, else set to 0
                 axleInfo.leftWheel.brakeTorque = brake ? brakeStrength : 0;
                 axleInfo.rightWheel.brakeTorque = brake ? brakeStrength : 0;
             }
