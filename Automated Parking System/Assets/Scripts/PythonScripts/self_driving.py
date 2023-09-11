@@ -51,6 +51,7 @@ if __name__ == "__main__":
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(3)
     actions = getActionList()
+    acceleration, rotation, braking = random.choice(actions)
 
     print("Now start Unity simulator!")
     connect(sock, host, port)
@@ -58,13 +59,15 @@ if __name__ == "__main__":
     startPos = [0, 0, 0]
 
     print("Started listening")
-    while stopped:
+    while not stopped:
         if initializing:
             paused, initializing = initialize()
         else:
             if not paused:
-                acceleration, rotation, braking = random.choice(actions)
+                if random.random() < 0.01:
+                    acceleration, rotation, braking = random.choice(actions)
                 stopped = move_car(sock, acceleration, rotation, braking)
 
 
     sock.sendall("stop".encode("UTF-8"))
+    input()

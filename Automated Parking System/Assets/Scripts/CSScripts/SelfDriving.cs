@@ -5,12 +5,13 @@ using System.Threading;
 using UnityEngine;
 using System.Globalization;
 using System.Diagnostics;
+using System;
 
 public class SelfDriving : MonoBehaviour
 {
     float receivedMotor;
     float receivedSteering;
-    float receivedBreaking;
+    float receivedBraking;
 
     Thread mThread;
     public string connectionIp = "127.0.0.1";
@@ -66,7 +67,6 @@ public class SelfDriving : MonoBehaviour
         string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
 
-
         if (!started)
         {
             byte[] data = Encoding.ASCII.GetBytes("start");
@@ -84,29 +84,31 @@ public class SelfDriving : MonoBehaviour
         if (started && dataReceived != null)
         {
             float[] parsedData = ParseData(dataReceived);
-            print(parsedData);
             receivedMotor = parsedData[0];
             receivedSteering = parsedData[1];
-            receivedBreaking = parsedData[2];
-            print("received motor and steering, moving Car...");
+            receivedBraking = parsedData[2];
 
             byte[] myWriteBuffer = Encoding.ASCII.GetBytes("ok");
             nwStream.Write(myWriteBuffer, 0, myWriteBuffer.Length);
         }
 
         if (dataReceived.Equals("started"))
+        {
             started = true;
+        }
         else if (dataReceived.Equals("stop"))
             running = false;
     }
 
     private float[] ParseData(string data)
     {
+
         string[] sArray = data.Split("|");
+        print(sArray[0] + '-' + sArray[1] + '-' + sArray[2]);
         float motor = float.Parse(sArray[0], CultureInfo.InvariantCulture.NumberFormat);
         float steering = float.Parse(sArray[1], CultureInfo.InvariantCulture.NumberFormat);
-        float breaking = float.Parse(sArray[2], CultureInfo.InvariantCulture.NumberFormat);
-        return new float[] { motor, steering, breaking };
+        float braking = float.Parse(sArray[2], CultureInfo.InvariantCulture.NumberFormat);
+        return new float[] { motor, steering, braking };
     }
 
 
@@ -115,21 +117,6 @@ public class SelfDriving : MonoBehaviour
         //To Do
 
     }
-
-    /*
-    static Vector3 StringToVector3(string sVector)
-    {
-        if (sVector.StartsWith("(") && sVector.EndsWith(")"))
-        {
-            sVector = sVector.Substring(1, sVector.Length - 2);
-        }
-
-        string[] sArray = sVector.Split(",");
-        return new Vector3(float.Parse(sArray[0]),
-                           float.Parse(sArray[1]),
-                           float.Parse(sArray[2]));
-    }
-    */
 
     public float GetMotor()
     {
@@ -143,7 +130,7 @@ public class SelfDriving : MonoBehaviour
 
     public float GetBrake()
     {
-        return receivedBreaking;
+        return receivedBraking;
     }
 
     public void StartStop()

@@ -8,7 +8,9 @@ public class CarController : MonoBehaviour
     public float maxMotorTorque;
     public float maxSteeringAngle;
     public float motor;
+    public float motorFromSelfDrive;
     public float steering;
+    public float steeringFromSelfDrive;
     public bool breaking;
     public float brakeStrength;
     public Light[] brakeLights;
@@ -23,8 +25,10 @@ public class CarController : MonoBehaviour
         RotateWheels();
 
         BrakeLights();
+
+        ApplyStep();
     }
-    
+
     private void ApplyControl()
     {
         if (!selfDriving)
@@ -36,10 +40,64 @@ public class CarController : MonoBehaviour
         }
         else
         {
-            motor = maxMotorTorque * sd.GetMotor();
-            steering = maxSteeringAngle * sd.GetSteering();
 
-            brake = Convert.ToBoolean(sd.GetBrake()); 
+            motor = maxMotorTorque * motorFromSelfDrive;
+            print(motorFromSelfDrive);
+            steering = maxSteeringAngle * steeringFromSelfDrive;
+
+            brake = Convert.ToBoolean(sd.GetBrake());
+        }
+    }
+
+    private void ApplyStep()
+    {
+        ApplyStepForMotor();
+
+        ApplyStepForSteering();
+
+    }
+
+    private void ApplyStepForMotor()
+    {
+        if (sd.GetMotor() == 0)
+        {
+            motorFromSelfDrive = 0;
+        }
+        else if (sd.GetMotor() == -1)
+        {
+            if (motorFromSelfDrive > -1)
+            {
+                motorFromSelfDrive -= 0.1f * Time.deltaTime;
+            }
+        }
+        else /* motor == 1 */
+        {
+            if (motorFromSelfDrive < 1)
+            {
+                motorFromSelfDrive += 0.1f * Time.deltaTime;
+            }
+        }
+    }
+
+    private void ApplyStepForSteering()
+    {
+        if (sd.GetMotor() == 0)
+        {
+            steeringFromSelfDrive = 0;
+        }
+        else if (sd.GetMotor() == -1)
+        {
+            if (steeringFromSelfDrive > -1)
+            {
+                steeringFromSelfDrive -= 0.05f * Time.deltaTime;
+            }
+        }
+        else /* motor == 1 */
+        {
+            if (steeringFromSelfDrive < 1)
+            {
+                steeringFromSelfDrive += 0.05f * Time.deltaTime;
+            }
         }
     }
 
@@ -96,11 +154,11 @@ public class CarController : MonoBehaviour
         selfDriving = !selfDriving;
     }
 
-    
+
 }
 
 [System.Serializable]
-public class AxleInfo 
+public class AxleInfo
 {
     public WheelCollider leftWheel;
     public WheelCollider rightWheel;
