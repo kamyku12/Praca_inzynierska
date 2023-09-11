@@ -1,7 +1,7 @@
 import socket
 import time
-import numpy as np
-
+import random
+from actionMap import getActionList
 
 def connect(sock, host, port):
     error = True
@@ -29,25 +29,18 @@ def initialize():
     return True, True
 
 
-def move_car(sock, last_steering, up_down, braking):
+def move_car(sock, acceleration, rotation, braking):
     time.sleep(0.025)
-    motor = 0.5
-    steering = 0 if braking else last_steering + 0.05 * up_down
 
-    if steering >= 1:
-        up_down = -1
-    elif steering <= -1:
-        up_down = 1
-
-    data_to_send = "|".join(map(str, [motor, steering, braking]))
+    data_to_send = "|".join(map(str, [acceleration, rotation, braking]))
     print(data_to_send)
     sock.sendall(data_to_send.encode("UTF-8"))
 
     received_data = sock.recv(1024).decode("UTF-8")
     if received_data == "stop":
-        return None
+        return True
 
-    return steering, up_down, braking
+    return False
 
 
 if __name__ == "__main__":
@@ -57,9 +50,7 @@ if __name__ == "__main__":
     host, port = "127.0.0.1", 25001
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(3)
-    steering = 0
-    up_down = 1
-    brake = 1
+    actions = getActionList()
 
     print("Now start Unity simulator!")
     connect(sock, host, port)
@@ -67,13 +58,13 @@ if __name__ == "__main__":
     startPos = [0, 0, 0]
 
     print("Started listening")
-    while True:
+    while stopped:
         if initializing:
             paused, initializing = initialize()
         else:
             if not paused:
-                steering, up_down, brake = move_car(sock, steering, up_down, brake)
-                if steering is None:
-                    break
+                acceleration, rotation, braking = random.choice(actions)
+                stopped = move_car(sock, acceleration, rotation, braking)
+
 
     sock.sendall("stop".encode("UTF-8"))
