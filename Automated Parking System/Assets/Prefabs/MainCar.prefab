@@ -119,6 +119,7 @@ GameObject:
   - component: {fileID: 1391005239}
   - component: {fileID: 8287835178743516613}
   - component: {fileID: 7172206244793792890}
+  - component: {fileID: 2003445282}
   m_Layer: 0
   m_Name: MainCar
   m_TagString: Untagged
@@ -134,7 +135,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8815614871030044812}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.046331167, y: 1.5679055, z: 1.75667}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -171,8 +172,14 @@ MonoBehaviour:
   maxMotorTorque: 400
   maxSteeringAngle: 30
   motor: 0
+  inputMotorFromSelfDrive: 0
   steering: 0
-  brakeStrength: 0
+  inputSteeringFromSelfDrive: 0
+  braking: 0
+  brakeStrength: 10
+  brakeLights: []
+  brake: 0
+  sd: {fileID: 8287835178743516613}
 --- !u!54 &1190610017
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -241,14 +248,36 @@ MonoBehaviour:
   - {fileID: 8982982317088971448}
   - {fileID: 6003670259446805734}
   - {fileID: 7797074677459548579}
-  frontSensor: {fileID: 4804044153462533255}
-  backSensor: {fileID: 975084076888206298}
   colors:
   - {fileID: 2100000, guid: 8bb0aa359cd7d864e88a0769678a7664, type: 2}
   - {fileID: 2100000, guid: 721f3e5f3a63d674684c063dc66b2fd9, type: 2}
   - {fileID: 2100000, guid: fe038ca5d7211594e91b445a65170564, type: 2}
-  leftBlinker: {fileID: 1223067519678536638}
-  posibleParkingSpot: {fileID: 0}
+  parkingSpots: []
+  frontSensor: {fileID: 4804044153462533255}
+  backSensor: {fileID: 975084076888206298}
+  leftBlinker: {fileID: 404300529824775521}
+  posibleParkingSpot: {fileID: 1066074055214906538, guid: a0bf63d661517814c9a2b4ed16413838, type: 3}
+  rightSpotInstantiate: 0
+  leftSpotInstantiate: 0
+  lookForSpot: 0
+  leftSide: 0
+  parkingSpot: 0
+--- !u!114 &2003445282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30ef97926763c70438745958a4659766, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  episodeTimer: 0
+  episodeLength: 30
+  learning: 0
+  parkingSpotCoordinates: {fileID: 0}
 --- !u!1 &8848951142523869262
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +334,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6542124396711533561, guid: 583bab72da8ab4b4b8efb72520fa0cda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6542124396711533561, guid: 583bab72da8ab4b4b8efb72520fa0cda, type: 3}
       propertyPath: m_LocalPosition.z
@@ -870,7 +899,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6542124396711533561, guid: 583bab72da8ab4b4b8efb72520fa0cda, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 6542124396711533561, guid: 583bab72da8ab4b4b8efb72520fa0cda, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1471,11 +1500,6 @@ PrefabInstance:
 --- !u!146 &807762707188138779 stripped
 WheelCollider:
   m_CorrespondingSourceObject: {fileID: 9137483713230193641, guid: 6e189ea58d0985f4b946b8e08538ae24, type: 3}
-  m_PrefabInstance: {fileID: 8501497441655259378}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1223067519678536638 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7278476208906492748, guid: 6e189ea58d0985f4b946b8e08538ae24, type: 3}
   m_PrefabInstance: {fileID: 8501497441655259378}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &2663568037770328109 stripped

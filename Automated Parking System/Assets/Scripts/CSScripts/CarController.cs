@@ -8,10 +8,10 @@ public class CarController : MonoBehaviour
     public float maxMotorTorque;
     public float maxSteeringAngle;
     public float motor;
-    public float motorFromSelfDrive;
+    public float inputMotorFromSelfDrive;
     public float steering;
-    public float steeringFromSelfDrive;
-    public bool breaking;
+    public float inputSteeringFromSelfDrive;
+    public bool braking;
     public float brakeStrength;
     public Light[] brakeLights;
     bool selfDriving;
@@ -41,14 +41,16 @@ public class CarController : MonoBehaviour
         else
         {
 
-            motor = maxMotorTorque * motorFromSelfDrive;
-            print(motorFromSelfDrive);
-            steering = maxSteeringAngle * steeringFromSelfDrive;
+            motor = maxMotorTorque * inputMotorFromSelfDrive;
+            steering = maxSteeringAngle * inputMotorFromSelfDrive;
 
             brake = Convert.ToBoolean(sd.GetBrake());
         }
     }
 
+    /* Apply step has to imitate steps inside Input.GetAxis where values are
+        from range <-1; 1> instead just 1, 0, -1
+     */
     private void ApplyStep()
     {
         ApplyStepForMotor();
@@ -59,44 +61,46 @@ public class CarController : MonoBehaviour
 
     private void ApplyStepForMotor()
     {
+        // Apply step for motor of self driving
         if (sd.GetMotor() == 0)
         {
-            motorFromSelfDrive = 0;
+            inputMotorFromSelfDrive = 0;
         }
         else if (sd.GetMotor() == -1)
         {
-            if (motorFromSelfDrive > -1)
+            if (inputMotorFromSelfDrive > -1)
             {
-                motorFromSelfDrive -= 0.1f * Time.deltaTime;
+                inputMotorFromSelfDrive -= 0.1f * Time.deltaTime;
             }
         }
         else /* motor == 1 */
         {
-            if (motorFromSelfDrive < 1)
+            if (inputMotorFromSelfDrive < 1)
             {
-                motorFromSelfDrive += 0.1f * Time.deltaTime;
+                inputMotorFromSelfDrive += 0.1f * Time.deltaTime;
             }
         }
     }
 
     private void ApplyStepForSteering()
     {
-        if (sd.GetMotor() == 0)
+        // Apply step for steering of self driving
+        if (sd.GetSteering() == 0)
         {
-            steeringFromSelfDrive = 0;
+            inputSteeringFromSelfDrive = 0;
         }
-        else if (sd.GetMotor() == -1)
+        else if (sd.GetSteering() == -1)
         {
-            if (steeringFromSelfDrive > -1)
+            if (inputSteeringFromSelfDrive > -1)
             {
-                steeringFromSelfDrive -= 0.05f * Time.deltaTime;
+                inputSteeringFromSelfDrive -= 0.05f * Time.deltaTime;
             }
         }
-        else /* motor == 1 */
+        else /* steering == 1 */
         {
-            if (steeringFromSelfDrive < 1)
+            if (inputSteeringFromSelfDrive < 1)
             {
-                steeringFromSelfDrive += 0.05f * Time.deltaTime;
+                inputSteeringFromSelfDrive += 0.05f * Time.deltaTime;
             }
         }
     }

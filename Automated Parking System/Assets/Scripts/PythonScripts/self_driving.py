@@ -70,4 +70,3 @@ if __name__ == "__main__":
 
 
     sock.sendall("stop".encode("UTF-8"))
-    input()
