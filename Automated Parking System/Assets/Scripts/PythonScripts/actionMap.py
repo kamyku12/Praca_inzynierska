@@ -15,7 +15,7 @@ rotation = [-1, 0 ,1]
 # Brake actions:
 # 0 - no brake
 # 1 - brake
-brake = [0]
+brake = [0, 1]
 
 def getActionList():
     return list(itertools.product(acceleration, rotation, brake))

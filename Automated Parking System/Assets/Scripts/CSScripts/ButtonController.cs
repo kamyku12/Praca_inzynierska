@@ -8,6 +8,7 @@ public class ButtonController : MonoBehaviour
     public CarController carController;
     public ParkingSpotChecker parkingSpotChecker;
     public SelfDriving selfDriving;
+    public LearningArtificialBrain learning;
     [SerializeField] private GameObject lookForSpotButton;
 
     public void ChangeView()
@@ -51,5 +52,11 @@ public class ButtonController : MonoBehaviour
         {
             lookForSpotButton.GetComponent<Image>().color = Color.green;
         }
+    }
+
+    public void ToggleLearning()
+    {
+        ChangeDrivingMode();
+        learning.ToggleLearning();
     }
 }

@@ -4,18 +4,21 @@ using UnityEngine;
 
 public class CarController : MonoBehaviour
 {
+    // values used in controlling car movement
+    public float motor;
+    public float steering;
+    public bool brake;
+    public float inputMotorFromSelfDrive;
+    public float inputSteeringFromSelfDrive;
+    // -------------------------------------
+
     public List<AxleInfo> axleInfos;
     public float maxMotorTorque;
     public float maxSteeringAngle;
-    public float motor;
-    public float inputMotorFromSelfDrive;
-    public float steering;
-    public float inputSteeringFromSelfDrive;
-    public bool braking;
     public float brakeStrength;
     public Light[] brakeLights;
     bool selfDriving;
-    public bool brake;
+    public bool braking;
     public SelfDriving sd;
 
     public void FixedUpdate()
@@ -42,7 +45,7 @@ public class CarController : MonoBehaviour
         {
 
             motor = maxMotorTorque * inputMotorFromSelfDrive;
-            steering = maxSteeringAngle * inputMotorFromSelfDrive;
+            steering = maxSteeringAngle * inputSteeringFromSelfDrive;
 
             brake = Convert.ToBoolean(sd.GetBrake());
         }
@@ -70,14 +73,14 @@ public class CarController : MonoBehaviour
         {
             if (inputMotorFromSelfDrive > -1)
             {
-                inputMotorFromSelfDrive -= 0.1f * Time.deltaTime;
+                inputMotorFromSelfDrive -= 0.5f * Time.deltaTime;
             }
         }
         else /* motor == 1 */
         {
             if (inputMotorFromSelfDrive < 1)
             {
-                inputMotorFromSelfDrive += 0.1f * Time.deltaTime;
+                inputMotorFromSelfDrive += 0.5f * Time.deltaTime;
             }
         }
     }
@@ -93,14 +96,14 @@ public class CarController : MonoBehaviour
         {
             if (inputSteeringFromSelfDrive > -1)
             {
-                inputSteeringFromSelfDrive -= 0.05f * Time.deltaTime;
+                inputSteeringFromSelfDrive -= 0.5f * Time.deltaTime;
             }
         }
         else /* steering == 1 */
         {
             if (inputSteeringFromSelfDrive < 1)
             {
-                inputSteeringFromSelfDrive += 0.05f * Time.deltaTime;
+                inputSteeringFromSelfDrive += 0.5f * Time.deltaTime;
             }
         }
     }
@@ -158,7 +161,14 @@ public class CarController : MonoBehaviour
         selfDriving = !selfDriving;
     }
 
-
+    public void ResetValues()
+    {
+        motor = 0.0f;
+        steering = 0.0f;
+        brake = false;
+        inputMotorFromSelfDrive = 0.0f;
+        inputSteeringFromSelfDrive = 0.0f;
+    }
 }
 
 [System.Serializable]

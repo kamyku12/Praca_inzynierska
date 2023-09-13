@@ -160,6 +160,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6f8e9fcfce228e46b4480ff019fb5fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  motor: 0
+  steering: 0
+  brake: 0
+  inputMotorFromSelfDrive: 0
+  inputSteeringFromSelfDrive: 0
   axleInfos:
   - leftWheel: {fileID: 807762707188138779}
     rightWheel: {fileID: 8401644831620586}
@@ -171,14 +176,11 @@ MonoBehaviour:
     steering: 0
   maxMotorTorque: 400
   maxSteeringAngle: 30
-  motor: 0
-  inputMotorFromSelfDrive: 0
-  steering: 0
-  inputSteeringFromSelfDrive: 0
-  braking: 0
   brakeStrength: 10
-  brakeLights: []
-  brake: 0
+  brakeLights:
+  - {fileID: 1429525631964178112}
+  - {fileID: 6699459391889238307}
+  braking: 0
   sd: {fileID: 8287835178743516613}
 --- !u!54 &1190610017
 Rigidbody:
@@ -276,8 +278,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   episodeTimer: 0
   episodeLength: 30
+  episodeNumber: 0
   learning: 0
   parkingSpotCoordinates: {fileID: 0}
+  startingPoint: {fileID: 0}
+  carController: {fileID: 652641740161704358}
 --- !u!1 &8848951142523869262
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +859,11 @@ Light:
   m_CorrespondingSourceObject: {fileID: 5888638160220037953, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
   m_PrefabInstance: {fileID: 6063243700854365728}
   m_PrefabAsset: {fileID: 0}
+--- !u!108 &1429525631964178112 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 5184287452747462880, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
 --- !u!108 &2945839301424505743 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 8990663944834547119, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
@@ -867,6 +877,11 @@ Light:
 --- !u!108 &6031075405682383346 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 546720221755836370, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!108 &6699459391889238307 stripped
+Light:
+  m_CorrespondingSourceObject: {fileID: 638872158373345027, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
   m_PrefabInstance: {fileID: 6063243700854365728}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8971046860715063225 stripped
