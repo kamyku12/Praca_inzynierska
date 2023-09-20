@@ -399,23 +399,23 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 24faffff
-      m_LastClickedID: -1500
-      m_ExpandedIDs: 36fbffff485a0000
+      m_SelectedIDs: 22faffff
+      m_LastClickedID: -1502
+      m_ExpandedIDs: 34fbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
-        m_Name: EpisodeTimer
-        m_OriginalName: EpisodeTimer
+        m_Name: 
+        m_OriginalName: 
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-        m_UserData: -10278
+        m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
-        m_OriginalEventType: 4
+        m_OriginalEventType: 11
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 8}
       m_SearchString: 
@@ -650,9 +650,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 4.97657, y: 3.161917, z: -7.887541}
+    m_Target: {x: -4.62823, y: -3.8639388, z: -2.1735368}
     speed: 2
-    m_Value: {x: 4.97657, y: 3.161917, z: -7.887541}
+    m_Value: {x: -4.62823, y: -3.8639388, z: -2.1735368}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -699,9 +699,9 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: 0.02975839, y: -0.5826884, z: -0.021306045, w: -0.8119505}
+    m_Target: {x: -0.32592753, y: -0.046725288, z: 0.016185615, w: -0.9441703}
     speed: 2
-    m_Value: {x: 0.029756475, y: -0.5826509, z: -0.021304674, w: -0.81189823}
+    m_Value: {x: -0.32590613, y: -0.04672222, z: 0.016184552, w: -0.9441083}
   m_Size:
     m_Target: 12.640855
     speed: 2
@@ -786,7 +786,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: a45d0000
     m_LastClickedID: 23972
-    m_ExpandedIDs: 00000000805d0000965d000000ca9a3b
+    m_ExpandedIDs: 00000000b65d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -814,7 +814,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000805d0000
+    m_ExpandedIDs: 00000000b65d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
