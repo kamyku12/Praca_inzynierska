@@ -37,32 +37,40 @@ def move_car(sock, acceleration, rotation, braking):
 
 
 
-def handle_received_data(received_data):
+def handle_received_data(received_data, calculations):
     newPaused = False
     newStopped = False
     newEpisode = False
+    newCalculations = calculations
     
     if received_data == 'stop':
+        print('stop')
         newStopped = True
+        newCalculations = True
 
     if received_data == 'pause':
+        print('pause')
         newPaused = True
+        newCalculations = True
 
     if received_data == 'newEpisode':
+        print('newEpisode')
         newPaused = True
         newEpisode = True
 
     if received_data == 'unPause':
         print('unPause')
         newPaused = False
+        newCalculations = True
 
-    return newPaused, newStopped, newEpisode
+    return newPaused, newStopped, newEpisode, newCalculations
 
 def main():
     paused = True
     stopped = False
     initializing = True
     newEpisode = False
+    calculations = True
 
     host, port = "127.0.0.1", 25001
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -79,16 +87,26 @@ def main():
             initializing = initialize(sock)
         else:
             if not paused:
+                print('sending')
                 if random.random() < 0.01:
                     acceleration, rotation, braking = random.choice(actions)
                 move_car(sock, acceleration, rotation, braking)
 
-            if paused: 
+            if paused and not newEpisode: 
                 sock.sendall("waitingForUnpause".encode("UTF-8"))
                 print('Waiting to unpause')
 
+            if newEpisode:
+                if calculations:
+                    sock.sendall("newEpisodeCalculations".encode("UTF-8"))
+                    print("New episode calculations")
+                    time.sleep(3)
+                    calculations = False
+                else:
+                    sock.sendall("waitingForUnpause".encode("UTF-8"))
+
             received_data = sock.recv(1024).decode("UTF-8")
-            paused, stopped, newEpisode = handle_received_data(received_data)
+            paused, stopped, newEpisode, calculations = handle_received_data(received_data, calculations)
     
 
     input('-press any key to end-')

@@ -3065,6 +3065,18 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2003445282, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: rigidbody
+      value: 
+      objectReference: {fileID: 2003445287}
+    - target: {fileID: 2003445282, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: selfDriving
+      value: 
+      objectReference: {fileID: 2003445284}
+    - target: {fileID: 2003445282, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: episodeLength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003445282, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: startingPoint
       value: 
       objectReference: {fileID: 183551087}
@@ -3072,6 +3084,10 @@ PrefabInstance:
       propertyPath: parkingSpotCoordinates
       value: 
       objectReference: {fileID: 708087440}
+    - target: {fileID: 8287835178743516613, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: learningArtificialBrain
+      value: 
+      objectReference: {fileID: 2003445286}
     - target: {fileID: 8815614871030044812, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_Name
       value: MainCar
@@ -3182,6 +3198,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ef97926763c70438745958a4659766, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &2003445287 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 1190610017, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+  m_PrefabInstance: {fileID: 2003445280}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2007986381
 GameObject:
   m_ObjectHideFlags: 0

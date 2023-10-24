@@ -15,21 +15,24 @@ public class SelfDriving : MonoBehaviour
 
     Thread mThread;
     public string connectionIp = "127.0.0.1";
+    public string receivedData;
     public SendingDataEvents sendDataEvent;
     public int connectionPort = 25001;
     IPAddress localAdd;
     TcpListener listener;
     TcpClient client;
+    NetworkStream nwStream;
     public bool running, pause;
     Process proc;
+    public LearningArtificialBrain learningArtificialBrain;
 
     private void Start()
     {
-        //proc = new Process();
-        //string path = Application.dataPath + "/Scripts/PythonScripts/self_driving.py";
-        //UnityEngine.Debug.Log(path);
-        //proc.StartInfo.FileName = path;
-        //proc.Start();
+        proc = new Process();
+        string path = Application.dataPath + "/Scripts/PythonScripts/self_driving.py";
+        UnityEngine.Debug.Log(path);
+        proc.StartInfo.FileName = path;
+        proc.Start();
         sendDataEvent = SendingDataEvents.Start;
         ThreadStart ts = new(GetInfo);
         mThread = new Thread(ts);
@@ -71,15 +74,15 @@ public class SelfDriving : MonoBehaviour
 
     void SendAndReceiveData()
     {
-        NetworkStream nwStream = client.GetStream();
+        nwStream = client.GetStream();
         byte[] buffer = new byte[client.ReceiveBufferSize];
 
         int bytesRead = nwStream.Read(buffer, 0, client.ReceiveBufferSize);
-        string dataReceived = Encoding.UTF8.GetString(buffer, 0, bytesRead);
+        receivedData = Encoding.UTF8.GetString(buffer, 0, bytesRead);
 
-        HandleReceivingData(dataReceived);
+        HandleReceivingData();
 
-        HandleSendingData(nwStream);
+        HandleSendingData();
     }
 
     private float[] ParseData(string data)
@@ -92,48 +95,54 @@ public class SelfDriving : MonoBehaviour
     }
 
 
-    private void HandleSendingData(NetworkStream nwStream)
+    private void HandleSendingData()
     {
-        byte[] data;
         switch(sendDataEvent)
         {
             // If event is start, send to python script message to start working
             case SendingDataEvents.Start:
-                data = Encoding.ASCII.GetBytes("start");
-                nwStream.Write(data, 0, data.Length);
+                Send("start");
                 break;
             // If event is stop, send to python script message to stop working
             case SendingDataEvents.Stop:
-                data = Encoding.ASCII.GetBytes("stop");
-                nwStream.Write(data, 0, data.Length);
+                Send("stop");
                 break;
             // If event is new episode, send to python script message about creating new episode
             case SendingDataEvents.NewEpisode:
-                data = Encoding.ASCII.GetBytes("newEpisode");
-                nwStream.Write(data, 0, data.Length);
+                Send("newEpisode");
                 break;
             // If event is received data, send to python script message that car received data
             case SendingDataEvents.ReceivedData:
-                data = Encoding.ASCII.GetBytes("receivedData");
-                nwStream.Write(data, 0, data.Length);
+                Send("receivedData");
                 break;
             // If event is pause, send to python script message to pause sending data
             case SendingDataEvents.Pause:
-                data = Encoding.ASCII.GetBytes("pause");
-                nwStream.Write(data, 0, data.Length);
+                Send("Pause");
                 break;
             case SendingDataEvents.UnPause:
-                data = Encoding.ASCII.GetBytes("unPause");
-                nwStream.Write(data, 0, data.Length);
+                Send("unPause");
+                break;
+            case SendingDataEvents.Idle:
+                Send("waiting");
                 break;
             default:
                 break;
         }
     }
 
-    private void HandleReceivingData(string receivedData)
+    private void Send(string message)
     {
-        print(receivedData);
+        byte[] data = Encoding.ASCII.GetBytes(message);
+        nwStream.Write(data, 0, data.Length);
+    }
+
+    private void HandleReceivingData()
+    {
+        if (sendDataEvent == SendingDataEvents.NewEpisode && receivedData != "newEpisodeCalculations") 
+        {
+            return;
+        }
+
         switch(receivedData)
         {
             case "started":
@@ -156,6 +165,7 @@ public class SelfDriving : MonoBehaviour
                 }
                 break;
             case string s when s.Contains('|'):
+                learningArtificialBrain.SetCanRun(true);
                 float[] parsedData = ParseData(receivedData);
                 receivedMotor = parsedData[0];
                 receivedSteering = parsedData[1];
@@ -166,6 +176,9 @@ public class SelfDriving : MonoBehaviour
                     sendDataEvent = SendingDataEvents.ReceivedData;
                 }
                 break;
+            case "newEpisodeCalculations":
+                sendDataEvent = SendingDataEvents.UnPause;
+                return;
             default:
                 sendDataEvent = SendingDataEvents.Idle;
                 break;
@@ -192,7 +205,7 @@ public class SelfDriving : MonoBehaviour
         pause = !pause;
         if(pause)
         {
-            print("Pase");
+            print("Pause");
             sendDataEvent = SendingDataEvents.Pause;
         }
         else
@@ -200,6 +213,18 @@ public class SelfDriving : MonoBehaviour
             print("unPause");
             sendDataEvent = SendingDataEvents.UnPause;
         }
+    }
+
+    public void SetSendingDataEvent(SendingDataEvents newEvent)
+    {
+        sendDataEvent = newEvent;
+    }
+
+    public void ResetValues()
+    {
+        receivedMotor = 0;
+        receivedSteering = 0;
+        receivedBraking = 0;
     }
 }
 

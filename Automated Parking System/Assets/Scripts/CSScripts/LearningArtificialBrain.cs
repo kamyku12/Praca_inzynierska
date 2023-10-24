@@ -8,15 +8,24 @@ public class LearningArtificialBrain : MonoBehaviour
     public int episodeNumber;
 
     public bool learning;
+    public bool canRun;
 
     public Transform parkingSpotCoordinates;
     public Transform startingPoint;
 
     public CarController carController;
+    public SelfDriving selfDriving;
+
+    public Rigidbody rigidbody;
+
+    private void Start()
+    {
+        canRun = true;
+    }
 
     private void Update()
     {
-        if(learning)
+        if(learning && canRun)
         {
             if(episodeTimer < episodeLength)
             {
@@ -60,6 +69,17 @@ public class LearningArtificialBrain : MonoBehaviour
         transform.position = randomPosition;
         transform.rotation = randomRotation;
 
+        // Reset every value and stop rigidBody from moving
         carController.ResetValues();
+        selfDriving.ResetValues();
+        rigidbody.velocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
+        selfDriving.SetSendingDataEvent(SendingDataEvents.NewEpisode);
+        canRun = false;
+    }
+
+    public void SetCanRun(bool newValue)
+    {
+        canRun = newValue;
     }
 }
