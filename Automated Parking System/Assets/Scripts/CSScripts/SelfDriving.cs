@@ -25,6 +25,7 @@ public class SelfDriving : MonoBehaviour
     public bool running, pause;
     Process proc;
     public LearningArtificialBrain learningArtificialBrain;
+    public ObservationForRL ObservationForRL;
 
     private void Start()
     {
@@ -113,7 +114,7 @@ public class SelfDriving : MonoBehaviour
                 break;
             // If event is received data, send to python script message that car received data
             case SendingDataEvents.ReceivedData:
-                Send("receivedData");
+                Send(ObservationForRL.GetObservations());
                 break;
             // If event is pause, send to python script message to pause sending data
             case SendingDataEvents.Pause:

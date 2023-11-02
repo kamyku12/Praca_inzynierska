@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 8287835178743516613}
   - component: {fileID: 7172206244793792890}
   - component: {fileID: 2003445282}
+  - component: {fileID: 2003445288}
   m_Layer: 0
   m_Name: MainCar
   m_TagString: Untagged
@@ -229,7 +230,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   connectionIp: 127.0.0.1
+  receivedData: 
+  sendDataEvent: 0
   connectionPort: 25001
+  running: 0
+  pause: 0
+  learningArtificialBrain: {fileID: 2003445282}
 --- !u!114 &7172206244793792890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -277,12 +283,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   episodeTimer: 0
-  episodeLength: 30
+  episodeLength: 5
   episodeNumber: 0
   learning: 0
+  canRun: 0
   parkingSpotCoordinates: {fileID: 0}
   startingPoint: {fileID: 0}
   carController: {fileID: 652641740161704358}
+  selfDriving: {fileID: 8287835178743516613}
+  rigidbody: {fileID: 1190610017}
+--- !u!114 &2003445288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a160e4ca8b836a5469632c2c087413f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: {x: 0, y: 0, z: 0}
+  rotation: 0
+  distance: []
+  rb: {fileID: 0}
+  parkinSpot: {fileID: 0}
 --- !u!1 &8848951142523869262
 GameObject:
   m_ObjectHideFlags: 0

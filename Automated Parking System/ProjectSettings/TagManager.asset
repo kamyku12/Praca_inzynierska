@@ -7,6 +7,7 @@ TagManager:
   - possibleParkingSpot
   - taken
   - notTaken
+  - Car
   layers:
   - Default
   - TransparentFX
