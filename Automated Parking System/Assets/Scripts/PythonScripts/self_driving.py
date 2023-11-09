@@ -2,6 +2,10 @@ import socket
 import time
 import random
 from actionMap import getActionList
+from SelfDrivingNetwork import device, SelfDrivingNetwork
+import os
+import torch
+from ReplayMemory import ReplayMemory
 
 def connect(sock, host, port):
     error = True
@@ -87,12 +91,47 @@ def main():
         distance = (0, 0, 0, 0)
     )
 
+
     host, port = "127.0.0.1", 25001
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(3)
     actions = getActionList()
     acceleration, rotation, braking = random.choice(actions)
 
+    # hyperparameters
+
+    # random action epsilon - % of chance to pick random action
+    # instead of action chosen by value approximation
+    # it is used to introduce exploration into our reinforcement learning
+    random_action = 0.05
+
+    # learning rate of neural network
+    learning_rate = 0.99
+
+    # size of replay memory used in learning
+    replay_memory_size = 1_000_000
+
+    # ---------------
+
+    experienceMemory = ReplayMemory(replay_memory_size)
+    
+    model = None
+    # If there is a already saved model of neural network load it to the model
+    
+    # Check if there is a saved model file
+    if os.path.isFile('SelfDrivingModel.pt'):
+        model = torch.load('./SelfDrivingModel.pt')
+        model.eval()
+        print('Loaded saved configuration:')
+        # print all parameters of model
+        for param_tensor in model.state_dict():
+            print(param_tensor, "\t", model.state_dict()[param_tensor].size())
+    else:
+        # Create new model if no file detected
+        model = SelfDrivingNetwork(len(observations), 128, 128, len(actions))
+        print('Creating new model')
+
+    
     print("Now start Unity simulator!")
     connect(sock, host, port)
 
@@ -123,6 +162,9 @@ def main():
             received_data = sock.recv(1024).decode("UTF-8")
             paused, stopped, newEpisode, calculations, observations = handle_received_data(received_data, calculations, observations)
     
+    # save model to SelfDrivingModel.pt file to update this model 
+    # in another iteration of project
+    torch.save(model, 'SelfDrivingModel.pt')
 
     
 

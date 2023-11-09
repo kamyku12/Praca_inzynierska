@@ -1,16 +1,19 @@
 import itertools
+import numpy as np
 
 # Acceleration actions:
-# -1 - reverse
+# -1 - full reverse
 # 0 - no acceleration
-# 1 - forward
-acceleration = [-1, 0, 1]
+# 1 - full forward
+# 0.25 step
+acceleration = np.arange(-1, 1, 0.1)
 
 # Rotation actions:
 # -1 - go left
 # 0 - no rotation
 # 1 - go right
-rotation = [-1, 0 ,1]
+# 0.25 step
+rotation = np.arange(-1, 1, 0.1)
 
 # Brake actions:
 # 0 - no brake
