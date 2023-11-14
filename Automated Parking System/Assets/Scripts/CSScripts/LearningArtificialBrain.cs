@@ -63,7 +63,7 @@ public class LearningArtificialBrain : MonoBehaviour
         episodeNumber += 1;
 
         Vector3 randomPosition = startingPoint.position + new Vector3(UnityEngine.Random.value, 0.15f, UnityEngine.Random.value);
-        Quaternion randomRotation = Quaternion.Euler(transform.rotation.eulerAngles.x, UnityEngine.Random.Range(0, 360f), transform.rotation.eulerAngles.z);
+        Quaternion randomRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360f), 0);
 
 
         transform.position = randomPosition;

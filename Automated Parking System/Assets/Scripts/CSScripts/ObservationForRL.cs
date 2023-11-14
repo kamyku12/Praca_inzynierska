@@ -145,7 +145,7 @@ public class ObservationForRL : MonoBehaviour
 
     public string GetObservations()
     {
-        string observations = $"{velocity.x}:{velocity.y}:{velocity.z}|{rotation}|{isCarInsideSpot}|{learning.GetTimer()}";
+        string observations = $"{velocity.x}:{velocity.y}:{velocity.z}|{rotation}|{isCarInsideSpot}|{learning.GetTimer()}|";
         for(int i = 0; i < distance.Length; i++)
         {
             observations = $"{observations}{distance[i]}";
@@ -155,6 +155,7 @@ public class ObservationForRL : MonoBehaviour
             }
         }
 
+        // print(observations);
         return observations;
     }
 }

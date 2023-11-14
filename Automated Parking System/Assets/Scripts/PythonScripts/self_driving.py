@@ -53,22 +53,22 @@ def handle_received_data(received_data, calculations, state, reward):
     newReward = reward
     
     if received_data == 'stop':
-        # print('stop')
+        #print('stop')
         newStopped = True
         newCalculations = True
 
     if received_data == 'pause':
-        # print('pause')
+        #print('pause')
         newPaused = True
         newCalculations = True
 
     if received_data == 'newEpisode':
-        # print('newEpisode')
+        #print('newEpisode')
         newPaused = True
         newEpisode = True
 
     if received_data == 'unPause':
-        # print('unPause')
+        #print('unPause')
         newPaused = False
         newCalculations = True
 
@@ -121,6 +121,7 @@ def main():
     calculations = True
     steps_counter = 0
     rewards_memory = []
+    rewards_for_plot = []
     input_data = None
 
     reward = 0
@@ -246,6 +247,11 @@ def main():
                 if calculations:
                     sock.sendall("newEpisodeCalculations".encode("UTF-8"))
                     print("New episode calculations")
+                    
+                    # Get average of rewards for plot
+                    rewards_for_plot.append(np.average(rewards_memory))
+                    rewards_memory = []
+                    
                     # update random action probability
                     random_action *= random_action_decay
                     print(random_action)
@@ -259,16 +265,16 @@ def main():
             try:
                 received_data = sock.recv(1024).decode("UTF-8")
                 paused, stopped, newEpisode, calculations, state, reward = handle_received_data(received_data, calculations, state, reward)
-            except:
+            except Exception as e:
+                print(e)
                 stopped = True
-                pass
     
     # save model to SelfDrivingModel.pt file to update this model 
     # in another iteration of project
     torch.save(model, 'SelfDrivingModel.pt')
 
     # plot reward changes
-    pyplot.plot(rewards_memory)
+    pyplot.plot(rewards_for_plot)
     pyplot.show()
 
     
