@@ -39,6 +39,7 @@ public class ObservationForRL : MonoBehaviour
     public GameObject parkinSpot;
     // Game object of car, used to calculate distance
     public GameObject carBody;
+    public LearningArtificialBrain learning;
 
     // --------------------------
 
@@ -144,7 +145,7 @@ public class ObservationForRL : MonoBehaviour
 
     public string GetObservations()
     {
-        string observations = $"{velocity.x}:{velocity.y}:{velocity.z}|{rotation}|{isCarInsideSpot}|";
+        string observations = $"{velocity.x}:{velocity.y}:{velocity.z}|{rotation}|{isCarInsideSpot}|{learning.GetTimer()}";
         for(int i = 0; i < distance.Length; i++)
         {
             observations = $"{observations}{distance[i]}";

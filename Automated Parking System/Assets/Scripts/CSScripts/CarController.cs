@@ -64,21 +64,22 @@ public class CarController : MonoBehaviour
 
     private void ApplyStepForMotor()
     {
+        float receivedMotor = sd.GetMotor();
         // Apply step for motor of self driving
-        if (sd.GetMotor() == 0)
+        if (receivedMotor == 0)
         {
             inputMotorFromSelfDrive = 0;
         }
-        else if (sd.GetMotor() == -1)
+        else if (receivedMotor < 0)
         {
-            if (inputMotorFromSelfDrive > -1)
+            if (inputMotorFromSelfDrive > receivedMotor)
             {
                 inputMotorFromSelfDrive -= 0.5f * Time.deltaTime;
             }
         }
-        else /* motor == 1 */
+        else /* motor > 0 */
         {
-            if (inputMotorFromSelfDrive < 1)
+            if (inputMotorFromSelfDrive < receivedMotor)
             {
                 inputMotorFromSelfDrive += 0.5f * Time.deltaTime;
             }
@@ -87,21 +88,22 @@ public class CarController : MonoBehaviour
 
     private void ApplyStepForSteering()
     {
+        float receivedSteering = sd.GetSteering();
         // Apply step for steering of self driving
-        if (sd.GetSteering() == 0)
+        if (receivedSteering == 0)
         {
             inputSteeringFromSelfDrive = 0;
         }
-        else if (sd.GetSteering() == -1)
+        else if (receivedSteering < 0)
         {
-            if (inputSteeringFromSelfDrive > -1)
+            if (inputSteeringFromSelfDrive > receivedSteering)
             {
                 inputSteeringFromSelfDrive -= 0.5f * Time.deltaTime;
             }
         }
-        else /* steering == 1 */
+        else /* steering > 0 */
         {
-            if (inputSteeringFromSelfDrive < 1)
+            if (inputSteeringFromSelfDrive < receivedSteering)
             {
                 inputSteeringFromSelfDrive += 0.5f * Time.deltaTime;
             }

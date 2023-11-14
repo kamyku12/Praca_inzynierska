@@ -7,19 +7,17 @@ class SelfDrivingNetwork(nn.Module):
 
     def __init__(self, input_size, hidden1_size, hidden2_size, num_classes):
         super().__init__()
-        self.flatten = nn.Flatten()
-        self.linear_relu_stack = nn.Sequential(
-            nn.Linear(input_size, hidden1_size),
-            nn.ReLU(),
-            nn.Linear(hidden1_size, hidden2_size),
-            nn.ReLU(),
-            nn.Linear(hidden2_size, num_classes)
-        )
+        self.layer1 = nn.Linear(input_size, hidden1_size)
+        self.relu1 = nn.ReLU()
+        self.layer2 = nn.Linear(hidden1_size, hidden2_size)
+        self.relu2 = nn.ReLU()
+        self.output_layer = nn.Linear(hidden2_size, num_classes)
 
     def forward(self, x):
-        x = self.flatten()
-        logits = self.linear_relu_stack(x)
-        return logits
+        out = self.relu1(self.layer1(x))
+        out = self.relu2(self.layer2(out))
+        out = self.output_layer(out)
+        return out
     
 device = (
     "cuda"

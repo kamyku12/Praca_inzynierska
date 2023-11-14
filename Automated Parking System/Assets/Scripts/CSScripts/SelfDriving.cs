@@ -48,12 +48,8 @@ public class SelfDriving : MonoBehaviour
             print("Aborting thread");
             mThread.Abort();
         }
-        
-        if(proc != null)
-        {
-            print("Killing process");
-            proc.Kill();
-        }
+
+        sendDataEvent = SendingDataEvents.Stop;
     }
 
 
@@ -118,7 +114,7 @@ public class SelfDriving : MonoBehaviour
                 break;
             // If event is pause, send to python script message to pause sending data
             case SendingDataEvents.Pause:
-                Send("Pause");
+                Send("pause");
                 break;
             case SendingDataEvents.UnPause:
                 Send("unPause");

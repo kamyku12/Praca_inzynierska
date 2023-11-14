@@ -3063,6 +3063,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2003445282, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: episodeLength
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2003445282, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: startingPoint
       value: 
       objectReference: {fileID: 183551087}
@@ -3078,6 +3082,10 @@ PrefabInstance:
       propertyPath: carBody
       value: 
       objectReference: {fileID: 872053351}
+    - target: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
+      propertyPath: learning
+      value: 
+      objectReference: {fileID: 2003445286}
     - target: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: parkinSpot
       value: 
