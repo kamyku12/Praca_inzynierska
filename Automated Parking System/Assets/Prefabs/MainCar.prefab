@@ -123,7 +123,7 @@ GameObject:
   - component: {fileID: 2003445288}
   m_Layer: 0
   m_Name: MainCar
-  m_TagString: Untagged
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -236,6 +236,7 @@ MonoBehaviour:
   running: 0
   pause: 0
   learningArtificialBrain: {fileID: 2003445282}
+  ObservationForRL: {fileID: 2003445288}
 --- !u!114 &7172206244793792890
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,7 +284,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   episodeTimer: 0
-  episodeLength: 5
+  episodeLength: 60
   episodeNumber: 0
   learning: 0
   canRun: 0
@@ -306,9 +307,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
   rotation: 0
+  isCarInsideSpot: 0
+  psWidth: 3.1
+  psLength: 6
   distance: []
-  rb: {fileID: 0}
+  rb: {fileID: 1190610017}
   parkinSpot: {fileID: 0}
+  carBody: {fileID: 8589595093340368131}
+  learning: {fileID: 2003445282}
+  rotationEpsilon: 0.003
+  velocityEpsilon: 0.003
 --- !u!1 &8848951142523869262
 GameObject:
   m_ObjectHideFlags: 0
@@ -822,6 +830,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2526703283451540259, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+      propertyPath: m_TagString
+      value: Car
+      objectReference: {fileID: 0}
     - target: {fileID: 2908049459055258009, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -908,6 +920,11 @@ Light:
 --- !u!108 &6699459391889238307 stripped
 Light:
   m_CorrespondingSourceObject: {fileID: 638872158373345027, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
+  m_PrefabInstance: {fileID: 6063243700854365728}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8589595093340368131 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2526703283451540259, guid: 1aac944d84df4ce4aa368a8b088138fd, type: 3}
   m_PrefabInstance: {fileID: 6063243700854365728}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &8971046860715063225 stripped

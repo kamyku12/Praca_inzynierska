@@ -147,7 +147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 183551086}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.92, y: 0.08, z: -6.59}
+  m_LocalPosition: {x: -9.51, y: 0.08, z: 0.25}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1891,11 +1891,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   learning: {fileID: 2003445286}
---- !u!1 &872053351 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8589595093340368131, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-  m_PrefabInstance: {fileID: 2003445280}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1005442567
 GameObject:
   m_ObjectHideFlags: 0
@@ -3075,36 +3070,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 708087440}
     - target: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 2003445287}
-    - target: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-      propertyPath: carBody
-      value: 
-      objectReference: {fileID: 872053351}
-    - target: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-      propertyPath: learning
-      value: 
-      objectReference: {fileID: 2003445286}
-    - target: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: parkinSpot
       value: 
       objectReference: {fileID: 708087441}
-    - target: {fileID: 8287835178743516613, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-      propertyPath: ObservationForRL
-      value: 
-      objectReference: {fileID: 2003445288}
-    - target: {fileID: 8589595093340368131, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-      propertyPath: m_TagString
-      value: Car
-      objectReference: {fileID: 0}
     - target: {fileID: 8815614871030044812, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_Name
       value: MainCar
-      objectReference: {fileID: 0}
-    - target: {fileID: 8815614871030044812, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-      propertyPath: m_TagString
-      value: Car
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_RootOrder
@@ -3112,15 +3083,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.38
+      value: -9.51
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.149
+      value: 0.08
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.9
+      value: 0.25
       objectReference: {fileID: 0}
     - target: {fileID: 8885441119679597757, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3210,22 +3181,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 30ef97926763c70438745958a4659766, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!54 &2003445287 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 1190610017, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-  m_PrefabInstance: {fileID: 2003445280}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2003445288 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2003445288, guid: 60c5bb642c97e2a43be4137110280c5b, type: 3}
-  m_PrefabInstance: {fileID: 2003445280}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a160e4ca8b836a5469632c2c087413f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2007986381
