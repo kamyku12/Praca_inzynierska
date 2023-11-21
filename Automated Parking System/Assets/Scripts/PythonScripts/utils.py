@@ -4,6 +4,7 @@ import torch.nn as nn
 from ReplayMemory import ReplayMemory
 from SelfDrivingNetwork import SelfDrivingNetwork
 import torch.optim as optim
+import os
 
 
 def calculate_reward(state):
@@ -106,20 +107,20 @@ def create_tensor_from_state(state):
 def create_nn_models(state, actions, learning_rate):
     # Check if there is a saved model file
     try:
-        f = open('SelfDrivingNetwork.pt')
-    except FileNotFoundError:
-        # Create new model if no file detected
         model = SelfDrivingNetwork(len(state), 128, 128, len(actions))
-        print('Creating new model')
-    else:
-        model = torch.load('SelfDrivingModel.pth')
-        model.eval()
+        print(os.listdir(f"{os.getcwd()}/Assets/Scripts/PythonScripts"))
+        model.load_state_dict(torch.load(
+            f"{os.getcwd()}/Assets/Scripts/PythonScripts/SelfDrivingModel.pth"))
         print('Loaded saved configuration:')
         # print all parameters of model
         for param_tensor in model.state_dict():
             print(param_tensor, "\t", model.state_dict()[param_tensor].size())
+    except Exception as e:
+        # Create new model if no file detected
+        model = SelfDrivingNetwork(len(state), 128, 128, len(actions))
+        print('Creating new model')
 
-    # create target model which will have updated weights after 'episodes_to_update'
+    # create target model which will have updated weights after some number of episodes
     target_model = SelfDrivingNetwork(len(state), 128, 128, len(actions))
     target_model.load_state_dict(model.state_dict())
 

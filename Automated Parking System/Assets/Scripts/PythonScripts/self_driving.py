@@ -2,14 +2,12 @@ import socket
 import time
 import random
 from actionMap import getActionList
-from SelfDrivingNetwork import SelfDrivingNetwork
 import torch
-import torch.nn as nn
-import torch.optim as optim
 from ReplayMemory import ReplayMemory
 import numpy as np
 from matplotlib import pyplot
 from utils import handle_received_data, create_tensor_from_state, create_nn_models, training
+import os
 
 
 def connect(sock, host, port):
@@ -152,12 +150,13 @@ def main():
                     sock.sendall("newEpisodeCalculations".encode("UTF-8"))
 
                     # train model after episodes_to_train number of episodes
-                    if episodes_to_train % episodes_counter == 0:
+                    if episodes_counter % episodes_to_train == 0:
                         training(experienceMemory, criterion,
                                  optimizer, model, target_model, discount_factor)
 
                     # update target_model after episodes_to_update number of episodes
-                    if episodes_to_update % episodes_counter == 0:
+                    if episodes_counter % episodes_to_update == 0:
+                        print('update')
                         target_model.load_state_dict(model.state_dict())
 
                     # Get average of rewards for plot
@@ -190,7 +189,8 @@ def main():
     # save model to SelfDrivingModel.pth file to update this model
     # in another iteration of project
     print('saving...')
-    torch.save(model.state_dict(), 'SelfDrivingModel.pth')
+    torch.save(model.state_dict(
+    ), f"{os.getcwd()}/Assets/Scripts/PythonScripts/SelfDrivingModel.pth")
 
     # plot reward changes
     pyplot.plot(rewards_for_plot)
