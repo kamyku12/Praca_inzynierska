@@ -51,8 +51,7 @@ def main():
     initializing = True
     newEpisode = False
     calculations = True
-    steps_counter = 0
-    episodes_step = 0
+    episodes_counter = 0
     rewards_memory = []
     rewards_for_plot = []
     cur_state_tensor = None
@@ -89,22 +88,22 @@ def main():
     min_random_action = 0.01
 
     # learning rate of neural network
-    learning_rate = 0.9
+    learning_rate = 0.99
 
     # size of replay memory used in learning
     replay_memory_size = 1_000_000
 
     # after which number of episodes update weights of second neural network
-    steps_to_update = 1000
+    episodes_to_update = 30
 
     # discount factor
-    discount_factor = 0.9
+    discount_factor = 0.99
 
     # number of steps to train model
     episodes_to_train = 20
 
     # bach size for training
-    batch_size = 100_000
+    batch_size = 10_000
 
     # ---------------
 
@@ -141,14 +140,6 @@ def main():
 
                 move_car(sock, acceleration, rotation, braking)
 
-                # update steps counter and weights of nn
-                # if steps counter reaches max steps
-                if steps_counter == steps_to_update:
-                    target_model.load_state_dict(model.state_dict())
-                    steps_counter = 0
-                else:
-                    steps_counter += 1
-
                 rewards_memory.append(reward)
 
             if paused and not newEpisode:
@@ -157,14 +148,17 @@ def main():
 
             if newEpisode:
                 if calculations:
-                    episodes_step += 1
+                    episodes_counter += 1
                     sock.sendall("newEpisodeCalculations".encode("UTF-8"))
 
-                    if episodes_step >= episodes_to_train:
+                    # train model after episodes_to_train number of episodes
+                    if episodes_to_train % episodes_counter == 0:
                         training(experienceMemory, criterion,
                                  optimizer, model, target_model, discount_factor)
 
-                        episodes_step = 1
+                    # update target_model after episodes_to_update number of episodes
+                    if episodes_to_update % episodes_counter == 0:
+                        target_model.load_state_dict(model.state_dict())
 
                     # Get average of rewards for plot
                     rewards_for_plot.append(np.average(rewards_memory))

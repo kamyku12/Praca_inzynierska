@@ -7,26 +7,32 @@ import torch.optim as optim
 
 
 def calculate_reward(state):
-    velocity = [state['velocity_x'], state['velocity_y'], state['velocity_z']]
-    rotation = [state['rotation']]
+    velocity_x = state['velocity_x']
+    velocity_z = state['velocity_z']
+    rotation = state['rotation']
     in_spot = state['isCarInsideSpot']
     distances = [state["distance_l_u"], state["distance_r_u"],
                  state["distance_l_b"], state["distance_r_b"]]
     timer = state['timer']
 
-    velocity_coeff = 1.0
-    rotation_coeff = -5.0
-    in_spot_coeff = 1000.0
-    distance_coeff = -2.0
-    timer_coeff = -0.1
+    # Define individual rewards and penalties
+    time_penalty = -0.01 * timer
+    rotation_penalty = -0.1 * abs(rotation)
+    velocity_penalty = -0.001 * (velocity_x**2 + velocity_z**2)
+    # Encourage getting closer to the parking spot
+    distance_reward = -0.1 * sum(distances)
+    inside_parking_reward = 1.0 if in_spot else 0.0
 
-    velocity_reward = velocity_coeff * np.linalg.norm(velocity)
-    rotation_reward = rotation_coeff * np.abs(rotation)
-    in_spot_reward = in_spot_coeff if in_spot else 0.0
-    distance_reward = distance_coeff * np.sum(distances)
-    timer_reward = timer_coeff * timer
+    # Combine components with weights
+    reward = (
+        time_penalty +
+        rotation_penalty +
+        velocity_penalty +
+        distance_reward +
+        inside_parking_reward
+    )
 
-    return velocity_reward + rotation_reward + in_spot_reward + distance_reward + timer_reward
+    return reward
 
 
 def handle_received_data(received_data, calculations, state, reward):
