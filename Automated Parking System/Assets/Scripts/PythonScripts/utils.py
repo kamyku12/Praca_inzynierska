@@ -5,6 +5,7 @@ from ReplayMemory import ReplayMemory
 from SelfDrivingNetwork import SelfDrivingNetwork
 import torch.optim as optim
 import os
+from numba import jit
 
 
 def calculate_reward(state):
@@ -12,14 +13,13 @@ def calculate_reward(state):
     velocity_z = state['velocity_z']
     rotation = state['rotation']
     in_spot = state['isCarInsideSpot']
-    distances = [state["distance_l_u"], state["distance_r_u"],
-                 state["distance_l_b"], state["distance_r_b"]]
+    distances = [state["f_distance"], state["b_distance"]]
     timer = state['timer']
 
     # Define individual rewards and penalties
-    time_penalty = -0.01 * timer
+    time_penalty = -0.1 * timer
     rotation_penalty = -0.1 * abs(rotation)
-    velocity_penalty = -0.001 * (velocity_x**2 + velocity_z**2)
+    velocity_penalty = -0.1 * (velocity_x**2 + velocity_z**2)
     # Encourage getting closer to the parking spot
     distance_reward = -0.1 * sum(distances)
     inside_parking_reward = 1.0 if in_spot else 0.0
@@ -41,7 +41,7 @@ def handle_received_data(received_data, calculations, state, reward):
     newStopped = False
     newEpisode = False
     newCalculations = calculations
-    newState = state
+    newState = state.copy()
     newReward = reward
 
     if received_data == 'stop':
@@ -68,14 +68,13 @@ def handle_received_data(received_data, calculations, state, reward):
         stateValues = received_data.replace(',', '.').split('|')
         velocity = stateValues[0].split(':')
         distance = stateValues[4].split(':')
-        velocity_keys = ['x', 'y', 'z']
-        distance_keys = ['l_u', 'r_u', 'l_b', 'r_b']
+        velocity_keys = ['x', 'z']
 
         for (value, key) in zip(velocity, velocity_keys):
             newState[f"velocity_{key}"] = float(value)
 
-        for (value, key) in zip(distance, distance_keys):
-            newState[f"distance_{key}"] = float(value)
+        newState["f_distance"] = float(distance[0])
+        newState["b_distance"] = float(distance[1])
 
         newState["timer"] = float(stateValues[3])
         newState["rotation"] = float(stateValues[1])
@@ -108,7 +107,6 @@ def create_nn_models(state, actions, learning_rate):
     # Check if there is a saved model file
     try:
         model = SelfDrivingNetwork(len(state), 128, 128, len(actions))
-        print(os.listdir(f"{os.getcwd()}/Assets/Scripts/PythonScripts"))
         model.load_state_dict(torch.load(
             f"{os.getcwd()}/Assets/Scripts/PythonScripts/SelfDrivingModel.pth"))
         print('Loaded saved configuration:')
@@ -125,46 +123,53 @@ def create_nn_models(state, actions, learning_rate):
     target_model.load_state_dict(model.state_dict())
 
     criterion = nn.MSELoss()
-    optimizer = optim.SGD(model.parameters(), lr=learning_rate)
+    optimizer = optim.Adam(model.parameters(), lr=learning_rate)
 
     return model, target_model, criterion, optimizer
 
 
+NUMBER_OF_EPOCHS = 50
+
+# Which difference determines when to stop training
+EPSILON_TO_STOP_TRAINING = torch.tensor(0.05)
+
+
+def is_terminating(state):
+    return state["isCarInsideSpot"] and state["f_distance"] == 0 and state["b_distance"] == 0 and state["rotation"] == 0,
+
+
 def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_model, discount_factor):
     print('training session')
-    sample = replay_memory.sample()
-    discount_factor_tensor = torch.tensor(discount_factor)
+    last_loss = torch.tensor(0)
+    for i in range(NUMBER_OF_EPOCHS):
+        print(f"epoch number: {i}")
+        sample = replay_memory.sample()
+        discount_factor_tensor = torch.tensor(discount_factor)
+        current_states = [s[0] for s in sample]
 
-    current_states = [s[0] for s in sample]
-    picked_actions = [s[1] for s in sample]
-    rewards = [s[2] for s in sample]
-    next_states = [s[3] for s in sample]
+        # Value of model neural network
+        values = torch.stack([model(create_tensor_from_state(s[0]))
+                             for s in sample]).view(1, -1)
 
-    # Value of model neural network
-    current_states_tensor = create_tensor_from_state(current_states)
-    values = torch.stack([torch.max(model(state))
-                          for state in current_states_tensor]).view(-1, 1)
+        # Value of target neural network
+        target_values = torch.stack(
+            [target_model(create_tensor_from_state(s[2])) for s in sample])
 
-    # Value of target neural network
-    next_states_tensor = create_tensor_from_state(next_states)
-    target_values = [target_model(state)
-                     for state in next_states_tensor]
+        # Recorded rewards
+        tensor_rewards = torch.tensor(np.asarray([s[1] for s in sample]))
 
-    tensor_rewards = torch.tensor(np.asarray(rewards))
+        y = [tensor_rewards[idx] if is_terminating(state) else tensor_rewards[idx] +
+             discount_factor_tensor * torch.max(target_values[idx]) for idx, state in enumerate(current_states)]
 
-    y = []
-    for idx, state in enumerate(current_states):
-        if state["isCarInsideSpot"]:
-            y.append(tensor_rewards[idx])
-        else:
-            y.append(tensor_rewards[idx] +
-                     discount_factor_tensor * torch.max(target_values[idx]))
+        y = torch.stack(y).to(torch.float32).view(-1, 1)
 
-    y = torch.stack(y).to(torch.float32)
+        loss = criterion(values, y)
+        print(f"\tLoss: {loss}")
+        if torch.abs(torch.sub(loss, last_loss)) <= EPSILON_TO_STOP_TRAINING:
+            break
+        last_loss = loss
 
-    loss = criterion(y, values)
-
-    optimizer.zero_grad()
-    loss.backward()
-    optimizer.step()
+        optimizer.zero_grad()
+        loss.backward()
+        optimizer.step()
     print('end of training session')

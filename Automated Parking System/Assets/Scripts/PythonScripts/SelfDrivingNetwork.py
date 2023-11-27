@@ -1,8 +1,6 @@
 import torch
 import torch.nn as nn
 
-from torch.autograd import Variable
-
 class SelfDrivingNetwork(nn.Module):
 
     def __init__(self, input_size, hidden1_size, hidden2_size, num_classes):

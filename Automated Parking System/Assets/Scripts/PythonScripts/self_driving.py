@@ -37,7 +37,7 @@ def initialize(sock):
 
 
 def move_car(sock, acceleration, rotation, braking):
-    time.sleep(0.025)
+    time.sleep(0.02)
 
     data_to_send = "|".join(map(str, [acceleration, rotation, braking]))
     sock.sendall(data_to_send.encode("UTF-8"))
@@ -55,16 +55,14 @@ def main():
     cur_state_tensor = None
 
     reward = 0
+
     curr_state = dict(
         velocity_x=0,
-        velocity_y=0,
         velocity_z=0,
         rotation=0,
         isCarInsideSpot=False,
-        distance_l_u=0,
-        distance_r_u=0,
-        distance_l_b=0,
-        distance_r_b=0,
+        f_distance=0,
+        b_distance=0,
         timer=0.0
     )
     next_state = curr_state.copy()
@@ -81,27 +79,27 @@ def main():
     # random action epsilon - % of chance to pick random action
     # instead of action chosen by value approximation
     # it is used to introduce exploration into our reinforcement learning
-    random_action = 0.2
-    random_action_decay = 0.95
-    min_random_action = 0.01
+    random_action = 0.5
+    random_action_decay = 0.98
+    min_random_action = 0.1
 
     # learning rate of neural network
-    learning_rate = 0.99
+    learning_rate = 0.005
 
     # size of replay memory used in learning
-    replay_memory_size = 1_000_000
+    replay_memory_size = 100_000
 
     # after which number of episodes update weights of second neural network
-    episodes_to_update = 30
+    episodes_to_update = 10000
 
     # discount factor
-    discount_factor = 0.99
+    discount_factor = 0.6
 
     # number of steps to train model
-    episodes_to_train = 20
+    episodes_to_train = 1
 
     # bach size for training
-    batch_size = 10_000
+    batch_size = 1000
 
     # ---------------
 
@@ -120,7 +118,6 @@ def main():
             initializing = initialize(sock)
         else:
             if not paused:
-                # print(curr_state)
                 if random.random() < random_action:
                     picked_action = random.randint(0, len(actions) - 1)
                     acceleration, rotation, braking = actions[picked_action]
@@ -176,9 +173,10 @@ def main():
                 received_data = sock.recv(1024).decode("UTF-8")
                 curr_state = next_state.copy()
                 paused, stopped, newEpisode, calculations, next_state, reward = handle_received_data(
-                    received_data, calculations, curr_state, reward)
+                    received_data, calculations, next_state, reward)
+
                 if picked_action:
-                    experience = [curr_state, picked_action,
+                    experience = [curr_state,
                                   reward, next_state]
                     experienceMemory.push(experience)
 

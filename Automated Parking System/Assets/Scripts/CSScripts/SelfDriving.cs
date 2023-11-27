@@ -49,6 +49,7 @@ public class SelfDriving : MonoBehaviour
             mThread.Abort();
         }
 
+        listener.Stop();
         sendDataEvent = SendingDataEvents.Stop;
     }
 
@@ -107,6 +108,8 @@ public class SelfDriving : MonoBehaviour
             // If event is new episode, send to python script message about creating new episode
             case SendingDataEvents.NewEpisode:
                 Send("newEpisode");
+                // Force brake on new episode to stop car from moving
+                receivedBraking = 1;
                 break;
             // If event is received data, send to python script message that car received data
             case SendingDataEvents.ReceivedData:

@@ -13,8 +13,9 @@ public class ObservationForRL : MonoBehaviour
     // Is a car inside parking spot
     public bool isCarInsideSpot;
     // Corners of required gameObjects
-    Vector3[] spotCorners;
-    Vector3[] carCorners;
+    Vector3[] spotPoints;
+    Vector3[] carPoints;
+    Vector3 carParameters;
 
     // Parking spot dimensions
     public float psWidth = 3.1f;
@@ -36,10 +37,11 @@ public class ObservationForRL : MonoBehaviour
     // Rigidbody of a car
     public Rigidbody rb;
     // Game object of parking spot, used to calculate distance
-    public GameObject parkinSpot;
+    public GameObject parkingSpot;
     // Game object of car, used to calculate distance
     public GameObject carBody;
     public LearningArtificialBrain learning;
+    public ParkingSpotChecker parkingSpotChecker;
 
     // --------------------------
 
@@ -61,20 +63,21 @@ public class ObservationForRL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        carParameters = parkingSpotChecker.GetCarParameters();
         velocity = new Vector3(ApplyEpsilon(rb.velocity.x, velocityEpsilon), ApplyEpsilon(rb.velocity.y, velocityEpsilon), ApplyEpsilon(rb.velocity.z, velocityEpsilon));
         rotation = CalculateRotationDifference();
         distance = CalculateDistance();
-        isCarInsideSpot = parkinSpot.tag == "taken";
+        isCarInsideSpot = parkingSpot.tag == "taken";
 
         DrawLines();
     }
 
     public float CalculateRotationDifference()
     {
-        float zRotationCar = transform.rotation.eulerAngles.z;
-        float zRotationSpot = parkinSpot.transform.rotation.eulerAngles.z;
+        float yRotationCar = transform.rotation.eulerAngles.y;
+        float yRotationSpot = parkingSpot.transform.rotation.eulerAngles.y;
 
-        float rotationDifference = zRotationSpot - zRotationCar;
+        float rotationDifference = yRotationSpot - yRotationCar + 90.0f;
 
         // Ensure rotation is in range of -180 and 180
 
@@ -94,19 +97,21 @@ public class ObservationForRL : MonoBehaviour
 
     public float[] CalculateDistance()
     {
-        float[] newDistance = new float[4];
-        Bounds spotBounds = parkinSpot.GetComponent<Renderer>().bounds;
-        spotCorners = AssignCorners(spotBounds, true);
+        float[] newDistance = new float[2];
 
-        Bounds carBounds = carBody.GetComponent<MeshCollider>().bounds;
-        carCorners = AssignCorners(carBounds, false);
+        Vector3 carPosition = transform.position;
+        carPoints = new Vector3[]{ new Vector3(carPosition.x, carPosition.y, carPosition.z + carParameters.z),
+                                new Vector3(carPosition.x, carPosition.y, carPosition.z - carParameters.z) };
 
-        for(int i = 0; i < newDistance.Length; i++)
-        {
-            newDistance[i] = Vector3.Distance(carCorners[i], spotCorners[i]);
-        }
 
-        
+        Vector3 spotPosition = parkingSpot.transform.position;
+        spotPoints = new Vector3[]{ new Vector3(spotPosition.x + carParameters.z, spotPosition.y, spotPosition.z),
+                                new Vector3(spotPosition.x - carParameters.z, spotPosition.y, spotPosition.z) };
+
+        // Front point of the parking spot
+        newDistance[0] = Vector3.Distance(carPoints[0], spotPoints[0]);
+        newDistance[1] = Vector3.Distance(carPoints[1], spotPoints[1]);
+
         return newDistance;
     }
 
@@ -137,16 +142,16 @@ public class ObservationForRL : MonoBehaviour
 
     private void DrawLines()
     {
-        for (int i = 0; i < carCorners.Length; i++)
+        for (int i = 0; i < carPoints.Length; i++)
         {
-            Debug.DrawLine(carCorners[i], spotCorners[i]);
+            Debug.DrawLine(carPoints[i], spotPoints[i]);
         }
     }
 
     public string GetObservations()
     {
         string observations = $"{velocity.x}:{velocity.y}:{velocity.z}|{rotation}|{isCarInsideSpot}|{learning.GetTimer()}|";
-        for(int i = 0; i < distance.Length; i++)
+        for (int i = 0; i < distance.Length; i++)
         {
             observations = $"{observations}{distance[i]}";
             if (i < distance.Length - 1)

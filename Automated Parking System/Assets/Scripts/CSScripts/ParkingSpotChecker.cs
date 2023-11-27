@@ -126,4 +126,9 @@ public class ParkingSpotChecker : MonoBehaviour
             parkingSpot = false;
         }
     }
+
+    public Vector3 GetCarParameters()
+    {
+        return carParameters;
+    }
 }
