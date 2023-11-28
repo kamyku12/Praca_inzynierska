@@ -36,10 +36,10 @@ def initialize(sock):
     return True
 
 
-def move_car(sock, acceleration, rotation, braking):
+def move_car(sock, acceleration, rotation):
     time.sleep(0.02)
 
-    data_to_send = "|".join(map(str, [acceleration, rotation, braking]))
+    data_to_send = "|".join(map(str, [acceleration, rotation, 0]))
     sock.sendall(data_to_send.encode("UTF-8"))
 
 
@@ -51,6 +51,7 @@ def main():
     calculations = True
     episodes_counter = 0
     rewards_memory = []
+    loss_memory = []
     rewards_for_plot = []
     cur_state_tensor = None
 
@@ -71,7 +72,7 @@ def main():
     sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     sock.settimeout(3)
     actions = getActionList()
-    acceleration, rotation, braking = random.choice(actions)
+    acceleration, rotation = random.choice(actions)
     picked_action = None
 
     # hyperparameters
@@ -79,27 +80,27 @@ def main():
     # random action epsilon - % of chance to pick random action
     # instead of action chosen by value approximation
     # it is used to introduce exploration into our reinforcement learning
-    random_action = 0.5
+    random_action = 0.3
     random_action_decay = 0.98
     min_random_action = 0.1
 
     # learning rate of neural network
-    learning_rate = 0.005
+    learning_rate = 0.01
 
     # size of replay memory used in learning
     replay_memory_size = 100_000
 
     # after which number of episodes update weights of second neural network
-    episodes_to_update = 10000
+    episodes_to_update = 10
 
     # discount factor
-    discount_factor = 0.6
+    discount_factor = 0.9
 
-    # number of steps to train model
+    # number of episodes to train model
     episodes_to_train = 1
 
     # bach size for training
-    batch_size = 1000
+    batch_size = 100
 
     # ---------------
 
@@ -118,22 +119,22 @@ def main():
             initializing = initialize(sock)
         else:
             if not paused:
-                if random.random() < random_action:
-                    picked_action = random.randint(0, len(actions) - 1)
-                    acceleration, rotation, braking = actions[picked_action]
-                else:
-                    # create tensor from state
-                    cur_state_tensor = create_tensor_from_state(curr_state)
+                # if random.random() < random_action:
+                #     picked_action = random.randint(0, len(actions) - 1)
+                #     acceleration, rotation = actions[picked_action]
+                # else:
+                # create tensor from state
+                cur_state_tensor = create_tensor_from_state(curr_state)
 
-                    # Get value of model
-                    value = model(cur_state_tensor)
+                # Get value of model
+                value = model(cur_state_tensor)
 
-                    # Pick action
-                    picked_action = torch.argmax(value)
+                # Pick action
+                picked_action = torch.argmax(value)
 
-                    acceleration, rotation, braking = actions[picked_action]
+                acceleration, rotation = actions[picked_action]
 
-                move_car(sock, acceleration, rotation, braking)
+                move_car(sock, acceleration, rotation)
 
                 rewards_memory.append(reward)
 
@@ -148,8 +149,10 @@ def main():
 
                     # train model after episodes_to_train number of episodes
                     if episodes_counter % episodes_to_train == 0:
-                        training(experienceMemory, criterion,
+                        loss_in_training = training(experienceMemory, criterion,
                                  optimizer, model, target_model, discount_factor)
+                        loss_memory.extend(loss_in_training)
+                        
 
                     # update target_model after episodes_to_update number of episodes
                     if episodes_counter % episodes_to_update == 0:
@@ -178,6 +181,7 @@ def main():
                 if picked_action:
                     experience = [curr_state,
                                   reward, next_state]
+                    print(reward)
                     experienceMemory.push(experience)
 
             except Exception as e:
@@ -191,7 +195,12 @@ def main():
     ), f"{os.getcwd()}/Assets/Scripts/PythonScripts/SelfDrivingModel.pth")
 
     # plot reward changes
+    pyplot.figure()
+    pyplot.title("Rewards")
     pyplot.plot(rewards_for_plot)
+    pyplot.figure()
+    pyplot.title("Loss")
+    pyplot.plot(np.arange(1, len(loss_memory) + 1) / 10, loss_memory)
     pyplot.show()
 
 

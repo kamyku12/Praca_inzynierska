@@ -8,6 +8,8 @@ public class ObservationForRL : MonoBehaviour
 
     // Velocity of a car
     public Vector3 velocity;
+    public Transform carFrontPoint;
+    public Transform carBackPoint;
     // Degree of rotation in relation to the forward axis of parking spot
     public float rotation;
     // Is a car inside parking spot
@@ -99,18 +101,13 @@ public class ObservationForRL : MonoBehaviour
     {
         float[] newDistance = new float[2];
 
-        Vector3 carPosition = transform.position;
-        carPoints = new Vector3[]{ new Vector3(carPosition.x, carPosition.y, carPosition.z + carParameters.z),
-                                new Vector3(carPosition.x, carPosition.y, carPosition.z - carParameters.z) };
-
-
         Vector3 spotPosition = parkingSpot.transform.position;
         spotPoints = new Vector3[]{ new Vector3(spotPosition.x + carParameters.z, spotPosition.y, spotPosition.z),
                                 new Vector3(spotPosition.x - carParameters.z, spotPosition.y, spotPosition.z) };
 
         // Front point of the parking spot
-        newDistance[0] = Vector3.Distance(carPoints[0], spotPoints[0]);
-        newDistance[1] = Vector3.Distance(carPoints[1], spotPoints[1]);
+        newDistance[0] = Vector3.Distance(carFrontPoint.position, spotPoints[0]);
+        newDistance[1] = Vector3.Distance(carBackPoint.position, spotPoints[1]);
 
         return newDistance;
     }
@@ -142,7 +139,8 @@ public class ObservationForRL : MonoBehaviour
 
     private void DrawLines()
     {
-        for (int i = 0; i < carPoints.Length; i++)
+        Vector3[] carPoints = new Vector3[]{carFrontPoint.position, carBackPoint.position};
+        for (int i = 0; i < spotPoints.Length; i++)
         {
             Debug.DrawLine(carPoints[i], spotPoints[i]);
         }

@@ -1,3 +1,4 @@
+import time
 import numpy as np
 import torch
 import torch.nn as nn
@@ -131,25 +132,33 @@ def create_nn_models(state, actions, learning_rate):
 NUMBER_OF_EPOCHS = 50
 
 # Which difference determines when to stop training
-EPSILON_TO_STOP_TRAINING = torch.tensor(0.05)
+EPSILON_TO_STOP_TRAINING = torch.tensor(0.001)
 
 
 def is_terminating(state):
     return state["isCarInsideSpot"] and state["f_distance"] == 0 and state["b_distance"] == 0 and state["rotation"] == 0,
 
 
+def loss_in_epoch(model, criterion, states, y) -> torch.Tensor:
+
+    # Value of model neural network
+    values = torch.stack([model(create_tensor_from_state(s[0]))
+                          for s in states]).view(1, -1)
+
+    loss = criterion(values, y)
+
+    return loss
+
+
 def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_model, discount_factor):
     print('training session')
     last_loss = torch.tensor(0)
+    loss_in_session = []
     for i in range(NUMBER_OF_EPOCHS):
         print(f"epoch number: {i}")
         sample = replay_memory.sample()
         discount_factor_tensor = torch.tensor(discount_factor)
         current_states = [s[0] for s in sample]
-
-        # Value of model neural network
-        values = torch.stack([model(create_tensor_from_state(s[0]))
-                             for s in sample]).view(1, -1)
 
         # Value of target neural network
         target_values = torch.stack(
@@ -158,12 +167,13 @@ def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_mo
         # Recorded rewards
         tensor_rewards = torch.tensor(np.asarray([s[1] for s in sample]))
 
-        y = [tensor_rewards[idx] if is_terminating(state) else tensor_rewards[idx] +
-             discount_factor_tensor * torch.max(target_values[idx]) for idx, state in enumerate(current_states)]
+        # if terminated: reward,
+        # else: reward + discount * max(target)
+        y = torch.stack([tensor_rewards[idx] if is_terminating(state) else tensor_rewards[idx] +
+                         discount_factor_tensor * torch.max(target_values[idx]) for idx, state in enumerate(current_states)]).to(torch.float32).view(-1, 1)
 
-        y = torch.stack(y).to(torch.float32).view(-1, 1)
-
-        loss = criterion(values, y)
+        loss = loss_in_epoch(model, criterion, sample, y)
+        loss_in_session.append(loss.item())
         print(f"\tLoss: {loss}")
         if torch.abs(torch.sub(loss, last_loss)) <= EPSILON_TO_STOP_TRAINING:
             break
@@ -172,4 +182,6 @@ def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_mo
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
+        print(f"\tAfter learning loss: {loss_in_epoch(model, criterion, sample, y)}")
     print('end of training session')
+    return loss_in_session

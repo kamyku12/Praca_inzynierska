@@ -13,8 +13,7 @@ class ReplayMemory:
         self.batch_size = batch_size
 
     def sample(self):
-        sample_memory = random.choices(self.memory, 
-                                       k=self.batch_size if len(self.memory) >= self.batch_size else len(self.memory))
+        sample_memory = random.choices(self.memory, k=self.batch_size)
         return sample_memory
 
     def push(self, experience):

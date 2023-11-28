@@ -1,0 +1,392 @@
+Info: Starting DDRAW Proxy DLL.
+Info: COM initialized
+Info: [AuthenticAMD] AMD Ryzen 7 5800H with Radeon Graphics         
+Info: AVX supported
+Info: AVX2 supported
+Info: SSE supported
+Info: SSE2 supported
+Info: XSAVE supported
+Info: GD3D11 Version X17.8-dev14 (Oct  5 2023) Codename(Immortal Phoenix)
+Info: Loading modules for stacktracer
+STACK: SymInit: Symbol-SearchPath: '.;C:\aplikacje\steam\steamapps\common\Gothic II\system;C:\aplikacje\steam\steamapps\common\Gothic II\system;C:\WINDOWS;C:\WINDOWS\system32;SRV*C:\websymbols*https://msdl.microsoft.com/download/symbols;', symOptions: 530, UserName: 'kubak'
+STACK: OS-Version: 10.0.22621 () 0x300-0x1
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\Gothic2.exe:Gothic2.exe (00400000), size: 7675904 (result: 0), SymType: '-nosymbols-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\Gothic2.exe', fileVersion: 2.6.0.0
+STACK: C:\WINDOWS\SYSTEM32\ntdll.dll:ntdll.dll (771D0000), size: 1773568 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\ntdll.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\System32\KERNEL32.DLL:KERNEL32.DLL (76E70000), size: 983040 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\KERNEL32.DLL', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\System32\KERNELBASE.dll:KERNELBASE.dll (75880000), size: 2572288 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\KERNELBASE.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\apphelp.dll:apphelp.dll (681C0000), size: 679936 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\apphelp.dll', fileVersion: 6.2.22621.2361
+STACK: C:\WINDOWS\SYSTEM32\AcLayers.DLL:AcLayers.DLL (62510000), size: 2695168 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\AcLayers.DLL', fileVersion: 6.2.22621.1928
+STACK: C:\WINDOWS\System32\msvcrt.dll:msvcrt.dll (769F0000), size: 802816 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\msvcrt.dll', fileVersion: 7.0.22621.608
+STACK: C:\WINDOWS\System32\GDI32.dll:GDI32.dll (77110000), size: 143360 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\GDI32.dll', fileVersion: 6.2.22621.2215
+STACK: C:\WINDOWS\System32\win32u.dll:win32u.dll (74E60000), size: 106496 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\win32u.dll', fileVersion: 6.2.22621.2215
+STACK: C:\WINDOWS\System32\gdi32full.dll:gdi32full.dll (761A0000), size: 925696 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\gdi32full.dll', fileVersion: 6.2.22621.2361
+STACK: C:\WINDOWS\System32\msvcp_win.dll:msvcp_win.dll (75160000), size: 495616 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\msvcp_win.dll', fileVersion: 6.2.22621.608
+STACK: C:\WINDOWS\System32\ucrtbase.dll:ucrtbase.dll (75C70000), size: 1122304 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\ucrtbase.dll', fileVersion: 6.2.22621.608
+STACK: C:\WINDOWS\System32\USER32.dll:USER32.dll (76F60000), size: 1736704 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\USER32.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\System32\SHLWAPI.dll:SHLWAPI.dll (76950000), size: 307200 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\SHLWAPI.dll', fileVersion: 6.2.22621.1635
+STACK: C:\WINDOWS\System32\RPCRT4.dll:RPCRT4.dll (74E80000), size: 761856 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\RPCRT4.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\AcGenral.DLL:AcGenral.DLL (61AE0000), size: 2498560 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\AcGenral.DLL', fileVersion: 6.2.22621.2361
+STACK: C:\WINDOWS\System32\sechost.dll:sechost.dll (76410000), size: 540672 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\sechost.dll', fileVersion: 6.2.22621.2215
+STACK: C:\WINDOWS\System32\ole32.dll:ole32.dll (75E70000), size: 1376256 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\ole32.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\System32\combase.dll:combase.dll (76AC0000), size: 2605056 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\combase.dll', fileVersion: 6.2.22621.2215
+STACK: C:\WINDOWS\System32\OLEAUT32.dll:OLEAUT32.dll (76D40000), size: 638976 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\OLEAUT32.dll', fileVersion: 6.2.22621.1992
+STACK: C:\WINDOWS\System32\advapi32.dll:advapi32.dll (77140000), size: 512000 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\advapi32.dll', fileVersion: 6.2.22621.2215
+STACK: C:\WINDOWS\System32\shcore.dll:shcore.dll (75DA0000), size: 790528 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\shcore.dll', fileVersion: 6.2.22621.2070
+STACK: C:\WINDOWS\System32\SHELL32.dll:SHELL32.dll (751E0000), size: 6901760 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\SHELL32.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\UxTheme.dll:UxTheme.dll (73200000), size: 520192 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\UxTheme.dll', fileVersion: 6.2.22621.2361
+STACK: C:\WINDOWS\SYSTEM32\WINMM.dll:WINMM.dll (73D20000), size: 200704 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\WINMM.dll', fileVersion: 6.2.22621.1635
+STACK: C:\WINDOWS\SYSTEM32\samcli.dll:samcli.dll (61AC0000), size: 90112 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\samcli.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\SYSTEM32\MSACM32.dll:MSACM32.dll (62E80000), size: 102400 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\MSACM32.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\SYSTEM32\VERSION.dll:VERSION.dll (74440000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\VERSION.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\SYSTEM32\USERENV.dll:USERENV.dll (74410000), size: 147456 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\USERENV.dll', fileVersion: 6.2.22621.1928
+STACK: C:\WINDOWS\SYSTEM32\dwmapi.dll:dwmapi.dll (72B10000), size: 147456 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\dwmapi.dll', fileVersion: 6.2.22621.1635
+STACK: C:\WINDOWS\SYSTEM32\urlmon.dll:urlmon.dll (61910000), size: 1712128 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\urlmon.dll', fileVersion: 11.0.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\WINSPOOL.DRV:WINSPOOL.DRV (73ED0000), size: 491520 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\WINSPOOL.DRV', fileVersion: 6.2.22621.1778
+STACK: C:\WINDOWS\SYSTEM32\ntmarta.dll:ntmarta.dll (73170000), size: 167936 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\ntmarta.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\SYSTEM32\MPR.dll:MPR.dll (618F0000), size: 102400 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\MPR.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\SYSTEM32\SspiCli.dll:SspiCli.dll (73CC0000), size: 155648 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\SspiCli.dll', fileVersion: 6.2.22621.2070
+STACK: C:\WINDOWS\SYSTEM32\iertutil.dll:iertutil.dll (616B0000), size: 2326528 (result: 0), SymType: '-nosymbols-', PDB: 'C:\WINDOWS\SYSTEM32\iertutil.dll', fileVersion: 11.0.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\srvcli.dll:srvcli.dll (628B0000), size: 122880 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\srvcli.dll', fileVersion: 6.2.22621.1928
+STACK: C:\WINDOWS\SYSTEM32\netutils.dll:netutils.dll (73C80000), size: 45056 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\netutils.dll', fileVersion: 6.2.22621.674
+STACK: C:\WINDOWS\System32\IMM32.DLL:IMM32.DLL (769A0000), size: 151552 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\IMM32.DLL', fileVersion: 6.2.22621.1344
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\mss32.dll:mss32.dll (21100000), size: 409600 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\mss32.dll', fileVersion: 3.0.0.0
+STACK: C:\WINDOWS\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.22621.608_none_42d541138da2ebd2\COMCTL32.dll:COMCTL32.dll (61610000), size: 593920 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\WinSxS\x86_microsoft.windows.common-controls_6595b64144ccf1df_5.82.22621.608_none_42d541138da2ebd2\COMCTL32.dll', fileVersion: 5.82.22621.608
+STACK: C:\WINDOWS\SYSTEM32\WSOCK32.dll:WSOCK32.dll (6B480000), size: 32768 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\WSOCK32.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\System32\WS2_32.dll:WS2_32.dll (75B00000), size: 389120 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\WS2_32.dll', fileVersion: 6.2.22621.1
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\binkw32.dll:binkw32.dll (30000000), size: 466944 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\binkw32.dll', fileVersion: 1.5.21.0
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\DINPUT.dll:DINPUT.dll (615D0000), size: 258048 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\DINPUT.dll', fileVersion: 1.0.16.0
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\BugslayerUtil.dll:BugslayerUtil.dll (615C0000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\BugslayerUtil.dll'
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\DDRAW.dll:DDRAW.dll (615B0000), size: 36864 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\DDRAW.dll'
+STACK: C:\WINDOWS\SYSTEM32\MSVCP140.dll:MSVCP140.dll (629C0000), size: 446464 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\MSVCP140.dll', fileVersion: 14.36.32532.0
+STACK: C:\WINDOWS\SYSTEM32\VCRUNTIME140.dll:VCRUNTIME140.dll (624F0000), size: 86016 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\VCRUNTIME140.dll', fileVersion: 14.36.32532.0
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\Ninja.dll:Ninja.dll (61470000), size: 1310720 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\Ninja.dll', fileVersion: 2.7.12.0
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\vdfs32g.dll:vdfs32g.dll (61410000), size: 368640 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\vdfs32g.dll', fileVersion: 1.0.0.1
+STACK: C:\WINDOWS\System32\PSAPI.DLL:PSAPI.DLL (76400000), size: 24576 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\PSAPI.DLL', fileVersion: 6.2.22621.1
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\MSVCP100.dll:MSVCP100.dll (613A0000), size: 430080 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\MSVCP100.dll', fileVersion: 10.0.30319.1
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\MSVCR100.dll:MSVCR100.dll (612E0000), size: 778240 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\MSVCR100.dll', fileVersion: 10.0.30319.1
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\SHW32.DLL:SHW32.DLL (60EA0000), size: 4423680 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\SHW32.DLL', fileVersion: 1.0.0.0
+STACK: C:\WINDOWS\SYSTEM32\dbghelp.dll:dbghelp.dll (744C0000), size: 1908736 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\dbghelp.dll', fileVersion: 6.2.22621.1
+STACK: C:\WINDOWS\SYSTEM32\d3d9.dll:d3d9.dll (60D20000), size: 1511424 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\d3d9.dll', fileVersion: 6.2.22621.1635
+STACK: C:\WINDOWS\SYSTEM32\dxcore.dll:dxcore.dll (72480000), size: 184320 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\dxcore.dll', fileVersion: 6.2.22621.2361
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\GD3D11\bin\g2a_avx2.dll:g2a_avx2.dll (60C30000), size: 962560 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\GD3D11\bin\g2a_avx2.dll'
+STACK: C:\WINDOWS\SYSTEM32\DWrite.dll:DWrite.dll (733B0000), size: 2244608 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\DWrite.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\d3d11.dll:d3d11.dll (70CA0000), size: 2326528 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\d3d11.dll', fileVersion: 6.2.22621.2070
+STACK: C:\WINDOWS\SYSTEM32\d2d1.dll:d2d1.dll (60710000), size: 5353472 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\d2d1.dll', fileVersion: 6.2.22621.2428
+STACK: C:\WINDOWS\SYSTEM32\dxgi.dll:dxgi.dll (724B0000), size: 827392 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\dxgi.dll', fileVersion: 6.2.22621.2361
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\AntTweakBar.dll:AntTweakBar.dll (60690000), size: 491520 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\AntTweakBar.dll'
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\assimp-vc143-mt.dll:assimp-vc143-mt.dll (60230000), size: 4546560 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\assimp-vc143-mt.dll', fileVersion: 5.2.5.0
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\GFSDK_SSAO_D3D11.win32.dll:GFSDK_SSAO_D3D11.win32.dll (60120000), size: 1064960 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\GFSDK_SSAO_D3D11.win32.dll', fileVersion: 4.0.0.7312
+STACK: C:\aplikacje\steam\steamapps\common\Gothic II\system\D3DCOMPILER_47.dll:D3DCOMPILER_47.dll (5FD90000), size: 3735552 (result: 0), SymType: '-exported-', PDB: 'C:\aplikacje\steam\steamapps\common\Gothic II\system\D3DCOMPILER_47.dll', fileVersion: 10.0.18362.1
+STACK: C:\WINDOWS\System32\bcryptPrimitives.dll:bcryptPrimitives.dll (76130000), size: 401408 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\System32\bcryptPrimitives.dll', fileVersion: 6.2.22621.1928
+STACK: C:\WINDOWS\SYSTEM32\kernel.appcore.dll:kernel.appcore.dll (73C60000), size: 77824 (result: 0), SymType: '-exported-', PDB: 'C:\WINDOWS\SYSTEM32\kernel.appcore.dll', fileVersion: 6.2.22621.1
+Info: Initializing GothicAPI
+Info: Initializing hooks
+Info: Patching: BroadCast fix
+Info: Patching: Interupt gamestart sound
+Info: Patching: Fix low framerate
+Info: Patching: LOW_FPS_NaN_check
+Info: Patching: Fix integer overflow crash
+Info: Patching: Texture size is lower than 32 - fix
+Info: Patching: Marking texture as cached-in after cache-out - fix
+Info: Patching: Fix dynamic lights huge impact on FPS in some locations
+Info: Patching: Improve loading times by disabling some unnecessary features
+Info: Patching: Fix using settings in freelook mode
+Info: Patching: Disable dx7 window transitions
+Info: Patching: Fix dx7 zbuffer possible crash
+Info: Patching: Show correct tris on toggle frame
+Info: Patching: Show correct savegame thumbnail
+Info: Patching: Fix screen hung due to DX7 api invalidating our swapchain
+Info: Patching: Godmode Debuglines
+Warning: [E:\GD3D11-release\GD3D11\D3D11Engine\zCOption.h(109), long __fastcall zCOption::Do_hooked_zOptionReadInt(void *,const class zSTRING &,const char *,int)]: ENGINE wasn't initialized yet! WTF! - Reading Gothic-Config: PATCHVERSION
+Info: Forcing zVidResFullscreenX
+Info: Forcing zVidResFullscreenY
+Info: Forcing zVidResFullscreenBPP = 32
+Info: Forcing zTexMaxSize = 16384
+Info: Forcing zTexCacheOutTimeMSec = 9120000
+Info: Forcing zTexCacheSizeMaxBytes = 1000000000
+Info: Forcing zSndCacheOutTimeMSec = 10000
+Info: Forcing zSndCacheSizeMaxBytes = 40000000
+Warning: [E:\GD3D11-release\GD3D11\D3D11Engine\zCOption.h(109), long __fastcall zCOption::Do_hooked_zOptionReadInt(void *,const class zSTRING &,const char *,int)]: ENGINE wasn't initialized yet! WTF! - Reading Gothic-Config: gameStarts
+Info: Loading menu settings from C:\aplikacje\steam\steamapps\common\Gothic II\system\GD3D11\UserSettings.ini
+Info: Applying Commandline-Overrides ...
+Info: -> Game: Original
+Info: Running with Commandline: -game:GothicGame.ini
+Info: Creating Main graphics engine
+Info: Initializing Device...
+Info: Rendering on: AMD Radeon(TM) Graphics
+Info: D3D_FEATURE_LEVEL: D3D_FEATURE_LEVEL_11_1
+Info: Creating ShaderManager
+Info: Compiling/Reloading shaders
+Info: Loading shader: VS_Ex
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_Ex.hlsl
+Info: Loading shader: VS_ExCube
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExCube.hlsl
+Info: Loading shader: VS_ExMode
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExNode.hlsl
+Info: Loading shader: VS_ExNodeCube
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExNodeCube.hlsl
+Info: Loading shader: VS_Decal
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_Decal.hlsl
+Info: Loading shader: VS_ExWater
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExWater.hlsl
+Info: Loading shader: VS_ParticlePoint
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ParticlePoint.hlsl
+Info: Loading shader: VS_ParticlePointShaded
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ParticlePointShaded.hlsl
+Info: Loading shader: VS_AdvanceRain
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_AdvanceRain.hlsl
+Info: Loading shader: VS_Ocean
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_Ocean.hlsl
+Info: Loading shader: VS_ExWS
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExWS.hlsl
+Info: Loading shader: VS_ExDisplace
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExDisplace.hlsl
+Info: Loading shader: VS_Obj
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_Obj.hlsl
+Info: Loading shader: VS_ExSkeletal
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExSkeletal.hlsl
+Info: Loading shader: VS_ExSkeletalVN
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExSkeletalVN.hlsl
+Info: Loading shader: VS_ExSkeletalCube
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExSkeletalCube.hlsl
+Info: Loading shader: VS_TransformedEx
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_TransformedEx.hlsl
+Info: Loading shader: VS_ExPointLight
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExPointLight.hlsl
+Info: Loading shader: VS_XYZRHW_DIF_T1
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_XYZRHW_DIF_T1.hlsl
+Info: Loading shader: VS_ExInstancedObj
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExInstancedObj.hlsl
+Info: Loading shader: VS_ExRemapInstancedObj
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExRemapInstancedObj.hlsl
+Info: Loading shader: VS_ExInstanced
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_ExInstanced.hlsl
+Info: Loading shader: VS_GrassInstanced
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_GrassInstanced.hlsl
+Info: Loading shader: VS_Lines
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_Lines.hlsl
+Info: Loading shader: VS_Lines_XYZRHW
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_Lines_XYZRHW.hlsl
+Info: Loading shader: PS_Lines
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Lines.hlsl
+Info: Loading shader: PS_LinesSel
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_LinesSel.hlsl
+Info: Loading shader: PS_Simple
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Simple.hlsl
+Info: Loading shader: PS_SimpleAlphaTest
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_SimpleAlphaTest.hlsl
+Info: Loading shader: PS_Rain
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Rain.hlsl
+Info: Loading shader: PS_Ghost
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Ghost.hlsl
+Info: Loading shader: PS_World
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_World.hlsl
+Info: Loading shader: PS_Ocean
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Ocean.hlsl
+Info: Loading shader: PS_Water
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Water.hlsl
+Info: Loading shader: PS_ParticleDistortion
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_ParticleDistortion.hlsl
+Info: Loading shader: PS_PFX_ApplyParticleDistortion
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_ApplyParticleDistortion.hlsl
+Info: Loading shader: PS_WorldTriplanar
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_WorldTriplanar.hlsl
+Info: Loading shader: PS_Grass
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Grass.hlsl
+Info: Loading shader: PS_Sky
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Sky.hlsl
+Info: Loading shader: VS_PFX
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_PFX.hlsl
+Info: Loading shader: VS_CinemaScope
+Info: Compilling vertex shader: system\GD3D11\shaders\VS_CinemaScope.hlsl
+Info: Loading shader: PS_PFX_Simple
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Simple.hlsl
+Info: Loading shader: PS_PFX_GaussBlur
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_GaussBlur.hlsl
+Info: Loading shader: PS_PFX_Heightfog
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Heightfog.hlsl
+Info: Loading shader: PS_PFX_UnderwaterFinal
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_UnderwaterFinal.hlsl
+Info: Loading shader: PS_Cloud
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Cloud.hlsl
+Info: Loading shader: PS_PFX_Alpha_Blend
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Alpha_Blend.hlsl
+Info: Loading shader: PS_PFX_CinemaScope
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_CinemaScope.hlsl
+Info: Loading shader: PS_PFX_Blend
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Blend.hlsl
+Info: Loading shader: PS_PFX_DistanceBlur
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_DistanceBlur.hlsl
+Info: Loading shader: PS_PFX_LumConvert
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_LumConvert.hlsl
+Info: Loading shader: PS_PFX_LumAdapt
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_LumAdapt.hlsl
+Info: Loading shader: PS_PFX_HDR
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_HDR.hlsl
+Info: Loading shader: PS_PFX_GodRayMask
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_GodRayMask.hlsl
+Info: Loading shader: PS_PFX_GodRayZoom
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_GodRayZoom.hlsl
+Info: Loading shader: PS_PFX_Tonemap
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Tonemap.hlsl
+Info: Loading shader: PS_SkyPlane
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_SkyPlane.hlsl
+Info: Loading shader: PS_AtmosphereGround
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_AtmosphereGround.hlsl
+Info: Loading shader: PS_Atmosphere
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Atmosphere.hlsl
+Info: Loading shader: PS_AtmosphereOuter
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_AtmosphereOuter.hlsl
+Info: Loading shader: PS_WorldLightmapped
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_WorldLightmapped.hlsl
+Info: Loading shader: PS_FixedFunctionPipe
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_FixedFunctionPipe.hlsl
+Info: Loading shader: PS_Video
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Video.hlsl
+Info: Loading shader: PS_DS_PointLight
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_DS_PointLight.hlsl
+Info: Loading shader: PS_DS_PointLightDynShadow
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_DS_PointLightDynShadow.hlsl
+Info: Loading shader: PS_DS_AtmosphericScattering
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_DS_AtmosphericScattering.hlsl
+Info: Loading shader: PS_DS_SimpleSunlight
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_DS_SimpleSunlight.hlsl
+Info: Loading shader: GS_VertexNormals
+Info: Compiling geometry shader: system\GD3D11\shaders\GS_VertexNormals.hlsl
+Info: Loading shader: GS_Billboard
+Info: Compiling geometry shader: system\GD3D11\shaders\GS_Billboard.hlsl
+Info: Loading shader: GS_Raindrops
+Info: Compiling geometry shader: system\GD3D11\shaders\GS_Raindrops.hlsl
+Info: Loading shader: GS_Cubemap
+Info: Compiling geometry shader: system\GD3D11\shaders\GS_Cubemap.hlsl
+Info: Loading shader: GS_ParticleStreamOut
+Info: Compiling geometry shader: system\GD3D11\shaders\VS_AdvanceRain.hlsl
+Info: Loading shader: PS_Diffuse
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Diffuse.hlsl
+Info: Loading shader: PS_PortalDiffuse
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PortalDiffuse.hlsl
+Info: Loading shader: PS_WaterfallFoam
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_WaterfallFoam.hlsl
+Info: Loading shader: PS_DS_AtmosphericScattering_Rain
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_DS_AtmosphericScattering.hlsl
+Info: Loading shader: PS_LinDepth
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_LinDepth.hlsl
+Info: Loading shader: PS_DiffuseNormalmapped
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Diffuse.hlsl
+Info: Loading shader: PS_DiffuseNormalmappedFxMap
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Diffuse.hlsl
+Info: Loading shader: PS_DiffuseAlphaTest
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Diffuse.hlsl
+Info: Loading shader: PS_DiffuseNormalmappedAlphaTest
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Diffuse.hlsl
+Info: Loading shader: PS_DiffuseNormalmappedAlphaTestFxMap
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Diffuse.hlsl
+Info: Loading shader: PS_Preview_White
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Preview.hlsl
+Info: Loading shader: PS_Preview_Textured
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Preview.hlsl
+Info: Loading shader: PS_Preview_TexturedLit
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_Preview.hlsl
+Info: Loading shader: PS_PFX_Sharpen
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Sharpen.hlsl
+Info: Loading shader: PS_PFX_GammaCorrectInv
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_GammaCorrectInv.hlsl
+Info: Loading shader: PS_LPPNormalmappedAlphaTest
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_LPP.hlsl
+Info: Compilling hull shader: system\GD3D11\shaders\OceanTess.hlsl
+Info: Loading custom mesh C:\aplikacje\steam\steamapps\common\Gothic II\system\GD3D11\meshes\icoSphere.obj
+Info: Loading 1 submeshes
+Warning: [E:\GD3D11-release\GD3D11\D3D11Engine\GMesh.cpp(47), enum XRESULT __thiscall GMesh::LoadMesh(const class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,float)]: Mesh contains only 2 materials! This may not be what the creator wanted, please check your.mtl-File and the mtllib-reference in the .obj-File. Remember to delete the cache-file after a change!
+Info: Loading rain-drop textures
+Info: Loading rain drops took 1345ms
+Info: Creating swapchain
+Info: Device: DXGI 1.5
+Info: SwapChain Mode: DXGI_SWAP_EFFECT_DISCARD
+Info: Creating new swapchain! (Format: DXGI_FORMAT_B8G8R8A8_UNORM)
+Info: Initializing AntTweakBar
+Info: SwapChain: DXGI 1.5
+Warning: [E:\GD3D11-release\GD3D11\D3D11Engine\D3D11PFX_SMAA.cpp(46), long __cdecl D3DX11CreateEffectFromFile_RES(const char *,const struct _D3D_SHADER_MACRO *,const char *,unsigned int,unsigned int,const class Microsoft::WRL::ComPtr<struct ID3D11Device1> &,void *,struct ID3DX11Effect **,long *)]: warning X4717: Effects deprecated for D3DCompiler_47
+
+Warning: [E:\GD3D11-release\GD3D11\D3D11Engine\D3D11PFX_SMAA.cpp(46), long __cdecl D3DX11CreateEffectFromFile_RES(const char *,const struct _D3D_SHADER_MACRO *,const char *,unsigned int,unsigned int,const class Microsoft::WRL::ComPtr<struct ID3D11Device1> &,void *,struct ID3DX11Effect **,long *)]: warning X4717: Effects deprecated for D3DCompiler_47
+
+Info: Forcing DDSCAPS_OFFSCREENPLAIN-Surface to 24-Bit
+Info: Reloading shader: PS_PFX_HDR
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_HDR.hlsl
+Info: Reloading shader: PS_PFX_Tonemap
+Info: Compilling pixel shader: system\GD3D11\shaders\PS_PFX_Tonemap.hlsl
+Info: Loading world!
+Info: World loaded, getting Levelmesh now!
+Info:  - Found 739696 polygons
+Info: Extracting world
+Info: Done extracting world!
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\NEWWORLD
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for NEWWORLD
+Info: Loading custom mesh C:\APLIKACJE\STEAM\STEAMAPPS\COMMON\GOTHIC II\system\GD3D11\meshes\unitSphere.obj
+Info: Loading 1 submeshes
+Warning: [E:\GD3D11-release\GD3D11\D3D11Engine\GMesh.cpp(47), enum XRESULT __thiscall GMesh::LoadMesh(const class std::basic_string<char,struct std::char_traits<char>,class std::allocator<char> > &,float)]: Mesh contains only 2 materials! This may not be what the creator wanted, please check your.mtl-File and the mtllib-reference in the .obj-File. Remember to delete the cache-file after a change!
+Info: Loading sky textures...
+Info: (EnsureTempVertexBufferSize) TempVertexBuffer too small (45056), need 46464 bytes. Recreating buffer.
+Info: Loading world!
+Info: World loaded, getting Levelmesh now!
+Info:  - Found 472710 polygons
+Info: Extracting world
+Info: Done extracting world!
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\ADDONWORLD
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for ADDONWORLD
+Info: Loading world!
+Info: World loaded, getting Levelmesh now!
+Info:  - Found 739696 polygons
+Info: Extracting world
+Info: Done extracting world!
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\NEWWORLD
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for NEWWORLD
+Info: Loading world!
+Info: World loaded, getting Levelmesh now!
+Info:  - Found 111061 polygons
+Info: Extracting world
+Info: Done extracting world!
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\DRAGONISLAND
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for DRAGONISLAND
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\DRAGONISLAND
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for DRAGONISLAND
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\DRAGONISLAND
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for DRAGONISLAND
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\DRAGONISLAND
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for DRAGONISLAND
+Info: Loading custom ZEN-Resources from: system\GD3D11\ZENResources\DRAGONISLAND
+Info: Loading Suppressed textures
+Info: Loading vegetation
+Info: Collecting vobs...
+Info: Done!
+Info: Settings sky texture for DRAGONISLAND
+Info: (EnsureTempVertexBufferSize) TempVertexBuffer too small (159744), need 164892 bytes. Recreating buffer.
+Info: (EnsureTempVertexBufferSize) TempVertexBuffer too small (329784), need 333424 bytes. Recreating buffer.
+Info: Shutting down...
