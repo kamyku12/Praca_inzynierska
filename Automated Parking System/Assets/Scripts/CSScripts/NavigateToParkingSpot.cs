@@ -21,7 +21,8 @@ public class NavigateToParkingSpot : Agent
     public float xMaxRange;
     public float zMinRange;
     public float zMaxRange;
-    public float rotationError;
+    public float allowableRotationError;
+    public float allowableDistanceError;
 
     public override void OnEpisodeBegin()
     {
@@ -76,7 +77,7 @@ public class NavigateToParkingSpot : Agent
            other.transform.parent.gameObject.tag == "taken" &&
            other.transform.parent.gameObject.Equals(parkingSpot))
         {
-            if(observations.rotation > rotationError || observations.rotation < -rotationError)
+            if(observations.rotation > allowableRotationError || observations.rotation < -allowableRotationError)
             {
                 Debug.Log("Parked incorrectly");
                 AddReward(1.5f);
@@ -85,7 +86,7 @@ public class NavigateToParkingSpot : Agent
             {
                 // If summed distances between car front and back point to front and back point of parking spot
                 // Is less than 1, it is a correct parking
-                if (observations.distance[0] + observations.distance[1] <= 1.0f)
+                if (observations.distance[0] + observations.distance[1] <= allowableDistanceError)
                 {
                     Debug.Log("Parked correctly");
                     AddReward(5f);

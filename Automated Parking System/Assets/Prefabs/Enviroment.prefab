@@ -4400,10 +4400,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8526520894330179288}
     - target: {fileID: 885236546, guid: 96406b5e17c0da34bb09cd7fc1de5cda, type: 3}
-      propertyPath: rotationError
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 885236546, guid: 96406b5e17c0da34bb09cd7fc1de5cda, type: 3}
       propertyPath: targetTransform
       value: 
       objectReference: {fileID: 797662441596095320}

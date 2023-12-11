@@ -304,6 +304,8 @@ MonoBehaviour:
   xMaxRange: 3
   zMinRange: -1
   zMaxRange: 3
+  allowableRotationError: 20
+  allowableDistanceError: 1
 --- !u!114 &2389395409937594052
 MonoBehaviour:
   m_ObjectHideFlags: 0
