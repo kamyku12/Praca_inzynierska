@@ -172,12 +172,3 @@ public class CarController : MonoBehaviour
         inputSteeringFromSelfDrive = 0.0f;
     }
 }
-
-[System.Serializable]
-public class AxleInfo
-{
-    public WheelCollider leftWheel;
-    public WheelCollider rightWheel;
-    public bool motor;
-    public bool steering;
-}

@@ -49,7 +49,10 @@ public class SelfDriving : MonoBehaviour
             mThread.Abort();
         }
 
-        listener.Stop();
+        if(listener != null)
+        {
+            listener.Stop();
+        }
         sendDataEvent = SendingDataEvents.Stop;
     }
 

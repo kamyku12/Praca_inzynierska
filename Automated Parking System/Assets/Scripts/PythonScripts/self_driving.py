@@ -80,12 +80,12 @@ def main():
     # random action epsilon - % of chance to pick random action
     # instead of action chosen by value approximation
     # it is used to introduce exploration into our reinforcement learning
-    random_action = 0.3
-    random_action_decay = 0.98
+    random_action = 0.8
+    random_action_decay = 0.9
     min_random_action = 0.1
 
     # learning rate of neural network
-    learning_rate = 0.01
+    learning_rate = 0.001
 
     # size of replay memory used in learning
     replay_memory_size = 100_000
@@ -119,20 +119,20 @@ def main():
             initializing = initialize(sock)
         else:
             if not paused:
-                # if random.random() < random_action:
-                #     picked_action = random.randint(0, len(actions) - 1)
-                #     acceleration, rotation = actions[picked_action]
-                # else:
+                if random.random() < random_action:
+                    picked_action = random.randint(0, len(actions) - 1)
+                    acceleration, rotation = actions[picked_action]
+                else:
                 # create tensor from state
-                cur_state_tensor = create_tensor_from_state(curr_state)
+                    cur_state_tensor = create_tensor_from_state(curr_state)
 
-                # Get value of model
-                value = model(cur_state_tensor)
+                    # Get value of model
+                    value = model(cur_state_tensor)
 
-                # Pick action
-                picked_action = torch.argmax(value)
+                    # Pick action
+                    picked_action = torch.argmax(value)
 
-                acceleration, rotation = actions[picked_action]
+                    acceleration, rotation = actions[picked_action]
 
                 move_car(sock, acceleration, rotation)
 
@@ -181,7 +181,6 @@ def main():
                 if picked_action:
                     experience = [curr_state,
                                   reward, next_state]
-                    print(reward)
                     experienceMemory.push(experience)
 
             except Exception as e:
@@ -195,10 +194,10 @@ def main():
     ), f"{os.getcwd()}/Assets/Scripts/PythonScripts/SelfDrivingModel.pth")
 
     # plot reward changes
-    pyplot.figure()
+    pyplot.subplot(211)
     pyplot.title("Rewards")
     pyplot.plot(rewards_for_plot)
-    pyplot.figure()
+    pyplot.subplot(212)
     pyplot.title("Loss")
     pyplot.plot(np.arange(1, len(loss_memory) + 1) / 10, loss_memory)
     pyplot.show()

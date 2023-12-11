@@ -6,7 +6,7 @@ public class IsParkingSpotTaken : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.tag == "Car")
+        if(other.gameObject.tag == "CarBody")
         {
             transform.parent.gameObject.tag = "taken";
         }
@@ -14,7 +14,7 @@ public class IsParkingSpotTaken : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Car")
+        if (other.gameObject.tag == "CarBody")
         {
             transform.parent.gameObject.tag = "notTaken";
         }

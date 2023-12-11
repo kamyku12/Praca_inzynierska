@@ -8,6 +8,11 @@ TagManager:
   - taken
   - notTaken
   - Car
+  - parkingSpot
+  - wall
+  - sensor
+  - CarBody
+  - checkPoint
   layers:
   - Default
   - TransparentFX
@@ -16,7 +21,7 @@ TagManager:
   - Water
   - UI
   - ParkingSpot
-  - 
+  - MainCar
   - 
   - 
   - 

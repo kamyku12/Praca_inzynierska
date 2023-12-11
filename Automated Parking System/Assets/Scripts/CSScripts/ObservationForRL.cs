@@ -12,11 +12,11 @@ public class ObservationForRL : MonoBehaviour
     public Transform carBackPoint;
     // Degree of rotation in relation to the forward axis of parking spot
     public float rotation;
+    public int[] sensorDistances;
     // Is a car inside parking spot
     public bool isCarInsideSpot;
     // Corners of required gameObjects
     Vector3[] spotPoints;
-    Vector3[] carPoints;
     Vector3 carParameters;
 
     // Parking spot dimensions
@@ -42,17 +42,11 @@ public class ObservationForRL : MonoBehaviour
     public GameObject parkingSpot;
     // Game object of car, used to calculate distance
     public GameObject carBody;
+    public GameObject[] sensors;
+    public List<Material> materials;
     public LearningArtificialBrain learning;
-    public ParkingSpotChecker parkingSpotChecker;
 
     // --------------------------
-
-    // Epislons for observations to make them 0 if it is realy small number
-
-    public float rotationEpsilon = 0.003f;
-    public float velocityEpsilon = 0.003f;
-
-    // --------------------------------------------------------------------
 
     // Start is called before the first frame update
     void Start()
@@ -60,15 +54,17 @@ public class ObservationForRL : MonoBehaviour
         velocity = Vector3.zero;
         rotation = 0f;
         distance = CalculateDistance();
+        sensorDistances = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
     }
 
     // Update is called once per frame
     void Update()
     {
-        carParameters = parkingSpotChecker.GetCarParameters();
-        velocity = new Vector3(ApplyEpsilon(rb.velocity.x, velocityEpsilon), ApplyEpsilon(rb.velocity.y, velocityEpsilon), ApplyEpsilon(rb.velocity.z, velocityEpsilon));
+        carParameters = transform.GetChild(3).GetComponent<MeshFilter>().mesh.bounds.extents; ;
+        velocity = rb.velocity;
         rotation = CalculateRotationDifference();
         distance = CalculateDistance();
+        sensorDistances = GetSensorDistancesValues();
         isCarInsideSpot = parkingSpot.tag == "taken";
 
         DrawLines();
@@ -92,8 +88,6 @@ public class ObservationForRL : MonoBehaviour
             rotationDifference += 360f;
         }
 
-        rotationDifference = ApplyEpsilon(rotationDifference, rotationEpsilon);
-
         return rotationDifference;
     }
 
@@ -102,39 +96,17 @@ public class ObservationForRL : MonoBehaviour
         float[] newDistance = new float[2];
 
         Vector3 spotPosition = parkingSpot.transform.position;
-        spotPoints = new Vector3[]{ new Vector3(spotPosition.x + carParameters.z, spotPosition.y, spotPosition.z),
-                                new Vector3(spotPosition.x - carParameters.z, spotPosition.y, spotPosition.z) };
+        spotPoints = new Vector3[]{ new Vector3(spotPosition.x + carParameters.z, 0, spotPosition.z),
+                                new Vector3(spotPosition.x - carParameters.z, 0, spotPosition.z) };
 
         // Front point of the parking spot
-        newDistance[0] = Vector3.Distance(carFrontPoint.position, spotPoints[0]);
-        newDistance[1] = Vector3.Distance(carBackPoint.position, spotPoints[1]);
+
+        Vector3[] carPoints = new Vector3[] { new Vector3(carFrontPoint.position.x, 0, carFrontPoint.position.z), 
+                                new Vector3(carBackPoint.position.x, 0, carBackPoint.position.z) };
+        newDistance[0] = Vector3.Distance(carPoints[0], spotPoints[0]);
+        newDistance[1] = Vector3.Distance(carPoints[1], spotPoints[1]);
 
         return newDistance;
-    }
-
-
-    // Function to set value to zero if it is in range <-epsilon; epsilon>
-    public float ApplyEpsilon(float value, float epsilon)
-    {
-        float newValue = value;
-        if ((newValue > 0f && newValue <= epsilon) || (newValue < 0f && newValue >= -epsilon))
-        {
-            newValue = 0;
-        }
-
-        return newValue;
-    }
-
-    // Method to assign right/left upper/bottom corner of bounds to array
-    public Vector3[] AssignCorners(Bounds bounds, bool spot)
-    {
-        Vector3[] array = new Vector3[4];
-        array[0] = new Vector3(bounds.min.x - (spot ? psLength / 2 : 0), bounds.min.y, bounds.max.z + (spot ? psWidth / 2 : 0));
-        array[1] = new Vector3(bounds.max.x + (spot ? psLength / 2 : 0), bounds.min.y, bounds.max.z + (spot ? psWidth / 2 : 0));
-        array[2] = new Vector3(bounds.min.x - (spot ? psLength / 2 : 0), bounds.min.y, bounds.min.z - (spot ? psWidth / 2 : 0));
-        array[3] = new Vector3(bounds.max.x + (spot ? psLength / 2 : 0), bounds.min.y, bounds.min.z - (spot ? psWidth / 2 : 0));
-
-        return array;
     }
 
     private void DrawLines()
@@ -160,5 +132,18 @@ public class ObservationForRL : MonoBehaviour
 
         // print(observations);
         return observations;
+    }
+
+    private int[] GetSensorDistancesValues()
+    {
+        int[] newValues = new int[sensors.Length];
+
+        for(int index = 0; index < sensors.Length; index += 1)
+        {
+            MeshRenderer sensorRenderer = sensors[index].GetComponent<MeshRenderer>();
+            newValues[index] = sensorRenderer.enabled ? materials.IndexOf(sensorRenderer.material) + 1 : 0;
+        }
+
+        return newValues;
     }
 }

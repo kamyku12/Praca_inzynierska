@@ -1,0 +1,65 @@
+{
+    "NavigateToSpot": {
+        "checkpoints": [
+            {
+                "steps": 499995,
+                "file_path": "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-499995.onnx",
+                "reward": -1.9127429030835628,
+                "creation_time": 1701968587.3561914,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-499995.pt"
+                ]
+            },
+            {
+                "steps": 999979,
+                "file_path": "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-999979.onnx",
+                "reward": -1.8397857916674443,
+                "creation_time": 1701970258.8215423,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-999979.pt"
+                ]
+            },
+            {
+                "steps": 1499960,
+                "file_path": "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-1499960.onnx",
+                "reward": -1.2051000689715148,
+                "creation_time": 1701972109.2941017,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-1499960.pt"
+                ]
+            },
+            {
+                "steps": 1999976,
+                "file_path": "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-1999976.onnx",
+                "reward": -0.9377273399044167,
+                "creation_time": 1701973927.6856978,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-1999976.pt"
+                ]
+            },
+            {
+                "steps": 2373341,
+                "file_path": "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-2373341.onnx",
+                "reward": -0.9980000704526901,
+                "creation_time": 1701975191.702882,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-2373341.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2373341,
+            "file_path": "results/NavigateToSpotSensors/NavigateToSpot.onnx",
+            "reward": -0.9980000704526901,
+            "creation_time": 1701975191.702882,
+            "auxillary_file_paths": [
+                "results/NavigateToSpotSensors/NavigateToSpot/NavigateToSpot-2373341.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.1+cu121"
+    }
+}

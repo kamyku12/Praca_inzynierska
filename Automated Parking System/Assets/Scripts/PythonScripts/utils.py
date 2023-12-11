@@ -20,18 +20,18 @@ def calculate_reward(state):
     # Define individual rewards and penalties
     time_penalty = -0.1 * timer
     rotation_penalty = -0.1 * abs(rotation)
-    velocity_penalty = -0.1 * (velocity_x**2 + velocity_z**2)
+    velocity_penalty = -0.001 * (velocity_x**2 + velocity_z**2)
     # Encourage getting closer to the parking spot
     distance_reward = -0.1 * sum(distances)
-    inside_parking_reward = 1.0 if in_spot else 0.0
+    inside_parking_reward = 3.0 if in_spot else 0.0
 
     # Combine components with weights
     reward = (
-        time_penalty +
         rotation_penalty +
         velocity_penalty +
         distance_reward +
-        inside_parking_reward
+        inside_parking_reward + 
+        time_penalty
     )
 
     return reward
@@ -79,7 +79,7 @@ def handle_received_data(received_data, calculations, state, reward):
 
         newState["timer"] = float(stateValues[3])
         newState["rotation"] = float(stateValues[1])
-        newState["isCarInsideSpot"] = stateValues[2] == "true"
+        newState["isCarInsideSpot"] = stateValues[2] == "True"
         newReward = calculate_reward(newState)
 
     return newPaused, newStopped, newEpisode, newCalculations, newState, newReward
@@ -131,9 +131,6 @@ def create_nn_models(state, actions, learning_rate):
 
 NUMBER_OF_EPOCHS = 50
 
-# Which difference determines when to stop training
-EPSILON_TO_STOP_TRAINING = torch.tensor(0.001)
-
 
 def is_terminating(state):
     return state["isCarInsideSpot"] and state["f_distance"] == 0 and state["b_distance"] == 0 and state["rotation"] == 0,
@@ -152,7 +149,6 @@ def loss_in_epoch(model, criterion, states, y) -> torch.Tensor:
 
 def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_model, discount_factor):
     print('training session')
-    last_loss = torch.tensor(0)
     loss_in_session = []
     for i in range(NUMBER_OF_EPOCHS):
         print(f"epoch number: {i}")
@@ -174,10 +170,6 @@ def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_mo
 
         loss = loss_in_epoch(model, criterion, sample, y)
         loss_in_session.append(loss.item())
-        print(f"\tLoss: {loss}")
-        if torch.abs(torch.sub(loss, last_loss)) <= EPSILON_TO_STOP_TRAINING:
-            break
-        last_loss = loss
 
         optimizer.zero_grad()
         loss.backward()

@@ -66,8 +66,8 @@ public class LearningArtificialBrain : MonoBehaviour
         Quaternion randomRotation = Quaternion.Euler(0, UnityEngine.Random.Range(0, 360f), 0);
 
 
-        transform.position = randomPosition;
-        transform.rotation = randomRotation;
+        transform.position = startingPoint.position;
+        transform.rotation = Quaternion.Euler(0, 90, 0);
 
         // Reset every value and stop rigidBody from moving
         carController.ResetValues();
