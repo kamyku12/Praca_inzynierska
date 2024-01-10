@@ -6,20 +6,24 @@ public class ParkingSpots : MonoBehaviour
 {
     public GameObject[] parkingSpots;
     public GameObject car;
+
+    public float carInSpotProbability;
+    public float moveCarToLeftProbability;
+    public float moveCarProbability;
     void Awake()
     {
         Random rnd = new Random(Guid.NewGuid().GetHashCode());
         foreach (GameObject spot in parkingSpots)
         {
-            // Probability of generating car in given spot is 80%
-            if (rnd.NextDouble() <= 0.8)
+            // Prawdopodobieństwo auta w miejscu parkingowym
+            if (rnd.NextDouble() <= carInSpotProbability)
             {
-                // Probability of moving cat to the left is 50%
-                int lr = rnd.NextDouble() <= 0.3 ? 1 : -1;
+                // Prawdopodobieństwo przesunięcia auta w lewo
+                int lr = rnd.NextDouble() <= moveCarToLeftProbability ? -1 : 1;
 
-                // Probability of moving car is 20%
-                float offset = rnd.NextDouble() <= 0.2 ? (float)(rnd.NextDouble() * 1.5 + 0.5) : 0;
-                Instantiate(car, spot.transform.position + new Vector3(offset, 0.14f, 0), Quaternion.identity);
+                // Prawdopodobieństwo przesunięcia auta
+                float offset = rnd.NextDouble() <= moveCarProbability ? (float)(rnd.NextDouble() * 1.5 + 0.5) : 0;
+                Instantiate(car, spot.transform.position + new Vector3(offset * lr, 0.14f, 0), Quaternion.identity);
                 spot.tag = "taken";
             }
         }

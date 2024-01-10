@@ -26,11 +26,17 @@ public class ObservationForRL : MonoBehaviour
     // -----------------------
 
     // Array of distance values
-    // 0 - left  upper  corner
-    // 1 - right upper  corner
-    // 2 - left  bottom corner
-    // 3 - right bottom corner
+    // 0 - front of car to the front of parking spot
+    // 1 - back of car to the back fo parking spot
     public float[] distance;
+
+    // -----------------------
+
+    // Vector between middle of parking spot and position of car
+
+    public Vector3 middleParkingSpot;
+    Vector3 parkingSpotMiddlePoint;
+    Vector3 carPointYZero;
 
     // -----------------------
 
@@ -55,6 +61,7 @@ public class ObservationForRL : MonoBehaviour
         rotation = 0f;
         distance = CalculateDistance();
         sensorDistances = new int[] { 0, 0, 0, 0, 0, 0, 0, 0 };
+        middleParkingSpot = Vector3.zero;
     }
 
     // Update is called once per frame
@@ -66,6 +73,7 @@ public class ObservationForRL : MonoBehaviour
         distance = CalculateDistance();
         sensorDistances = GetSensorDistancesValues();
         isCarInsideSpot = parkingSpot.tag == "taken";
+        middleParkingSpot = CalculateMiddlePointVector();
 
         DrawLines();
     }
@@ -116,11 +124,14 @@ public class ObservationForRL : MonoBehaviour
         {
             Debug.DrawLine(carPoints[i], spotPoints[i]);
         }
+
+        Debug.DrawLine(carPointYZero, parkingSpotMiddlePoint);
+        Debug.DrawLine(transform.position, parkingSpot.transform.position);
     }
 
     public string GetObservations()
     {
-        string observations = $"{velocity.x}:{velocity.y}:{velocity.z}|{rotation}|{isCarInsideSpot}|{learning.GetTimer()}|";
+        string observations = $"{velocity}|{rotation}|{isCarInsideSpot}|{learning.GetTimer()}|";
         for (int i = 0; i < distance.Length; i++)
         {
             observations = $"{observations}{distance[i]}";
@@ -145,5 +156,15 @@ public class ObservationForRL : MonoBehaviour
         }
 
         return newValues;
+    }
+
+    // Return length vector between point on the x axis of the parking spot and position of a car
+    private Vector3 CalculateMiddlePointVector()
+    {
+        // Point on the x axis of the parking spot on locked z axis
+        parkingSpotMiddlePoint = new Vector3(transform.position.x, 0,parkingSpot.transform.position.z);
+        carPointYZero = new Vector3(transform.position.x, 0, transform.position.z);
+
+        return parkingSpotMiddlePoint - carPointYZero;
     }
 }

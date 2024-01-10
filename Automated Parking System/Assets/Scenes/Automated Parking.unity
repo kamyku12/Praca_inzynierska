@@ -3390,6 +3390,9 @@ MonoBehaviour:
   - {fileID: 2059993515}
   - {fileID: 1100538021}
   car: {fileID: 8815614871030044812, guid: 3da8ffde696316b4fac5865d7675c787, type: 3}
+  carInSpotProbability: 0.8
+  moveCarToLeftProbability: 0.5
+  moveCarProbability: 0.2
 --- !u!1 &1950503598
 GameObject:
   m_ObjectHideFlags: 0
@@ -3856,7 +3859,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2106294044
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3960,6 +3963,7 @@ MonoBehaviour:
   carController: {fileID: 1825178958}
   parkingSpotChecker: {fileID: 1825178954}
   selfDriving: {fileID: 1825178955}
+  learning: {fileID: 0}
   lookForSpotButton: {fileID: 1542188461}
 --- !u!1 &2115740951 stripped
 GameObject:

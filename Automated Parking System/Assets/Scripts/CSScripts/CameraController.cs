@@ -17,12 +17,12 @@ public class CameraController : MonoBehaviour
     {
         if (birdView)
         {
-            // Ustaw pozycjê i rotacje kamery na punkt w prefabie oraz rotacje na rotacje auta na osi y i pochyl j¹ o 45 stopni do przodu
+            // Ustaw pozycje i rotacje kamery na punkt w prefabie oraz rotacje na rotacje auta na osi y i pochyl ja o 45 stopni do przodu
             transform.SetPositionAndRotation(birdCamera.position, Quaternion.Euler(45, car.rotation.eulerAngles.y, 0));
         }
         else
         {
-            // Ustaw pozycjê i rotacje kamery na punkt w prefabie oraz rotacje na rotacje auta na osi y
+            // Ustaw pozycje i rotacje kamery na punkt w prefabie oraz rotacje na rotacje auta na osi y
             transform.SetPositionAndRotation(povCamera.position, Quaternion.Euler(0, car.rotation.eulerAngles.y, 0));
         }
     }
