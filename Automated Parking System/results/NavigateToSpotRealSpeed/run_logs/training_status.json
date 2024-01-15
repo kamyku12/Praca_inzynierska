@@ -2,58 +2,58 @@
     "NavigateToSpot": {
         "checkpoints": [
             {
-                "steps": 10999973,
-                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-10999973.onnx",
-                "reward": 1.278281984420923,
-                "creation_time": 1704918694.642536,
+                "steps": 28499958,
+                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-28499958.onnx",
+                "reward": 32.574411404921726,
+                "creation_time": 1704998416.0328932,
                 "auxillary_file_paths": [
-                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-10999973.pt"
+                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-28499958.pt"
                 ]
             },
             {
-                "steps": 11499950,
-                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-11499950.onnx",
-                "reward": 5.098353325663244,
-                "creation_time": 1704920354.9221983,
+                "steps": 28999972,
+                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-28999972.onnx",
+                "reward": 21.37854464216666,
+                "creation_time": 1705000150.6787975,
                 "auxillary_file_paths": [
-                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-11499950.pt"
+                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-28999972.pt"
                 ]
             },
             {
-                "steps": 11999973,
-                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-11999973.onnx",
-                "reward": 6.635262494937319,
-                "creation_time": 1704921833.3748162,
+                "steps": 29499989,
+                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-29499989.onnx",
+                "reward": 25.682261379177753,
+                "creation_time": 1705001519.2580383,
                 "auxillary_file_paths": [
-                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-11999973.pt"
+                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-29499989.pt"
                 ]
             },
             {
-                "steps": 12499947,
-                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-12499947.onnx",
-                "reward": 7.000300349574536,
-                "creation_time": 1704923725.3210638,
+                "steps": 29999942,
+                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-29999942.onnx",
+                "reward": 28.513000073739224,
+                "creation_time": 1705002806.6289027,
                 "auxillary_file_paths": [
-                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-12499947.pt"
+                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-29999942.pt"
                 ]
             },
             {
-                "steps": 12825641,
-                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-12825641.onnx",
-                "reward": 12.628399676829577,
-                "creation_time": 1704924795.4633992,
+                "steps": 30000006,
+                "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-30000006.onnx",
+                "reward": 28.513000073739224,
+                "creation_time": 1705002806.693428,
                 "auxillary_file_paths": [
-                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-12825641.pt"
+                    "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-30000006.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 12825641,
+            "steps": 30000006,
             "file_path": "results/NavigateToSpotRealSpeed/NavigateToSpot.onnx",
-            "reward": 12.628399676829577,
-            "creation_time": 1704924795.4633992,
+            "reward": 28.513000073739224,
+            "creation_time": 1705002806.693428,
             "auxillary_file_paths": [
-                "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-12825641.pt"
+                "results/NavigateToSpotRealSpeed/NavigateToSpot/NavigateToSpot-30000006.pt"
             ]
         }
     },

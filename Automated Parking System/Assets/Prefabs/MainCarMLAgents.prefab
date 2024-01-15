@@ -182,10 +182,10 @@ GameObject:
   - component: {fileID: 885236547}
   - component: {fileID: 885236549}
   - component: {fileID: 8526520893583488799}
-  - component: {fileID: 885236546}
   - component: {fileID: 6501652839121228998}
   - component: {fileID: 7122525666549264098}
   - component: {fileID: 1975657902759675121}
+  - component: {fileID: 2956927678329289500}
   m_Layer: 0
   m_Name: MainCarMLAgents
   m_TagString: Car
@@ -368,7 +368,7 @@ MonoBehaviour:
   - {fileID: 2100000, guid: 721f3e5f3a63d674684c063dc66b2fd9, type: 2}
   - {fileID: 2100000, guid: 8bb0aa359cd7d864e88a0769678a7664, type: 2}
   learning: {fileID: 0}
---- !u!114 &885236546
+--- !u!114 &6501652839121228998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -377,7 +377,113 @@ MonoBehaviour:
   m_GameObject: {fileID: 8815614871030044812}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b2cc57289f37b148b10ddf4ae6006be, type: 3}
+  m_Script: {fileID: 11500000, guid: c492e7bf4c94de94c9a40e6549acf58f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  targetTransform: {fileID: 0}
+  carController: {fileID: 0}
+  startingSpot: {fileID: 0}
+  observations: {fileID: 0}
+  parkingSpot: {fileID: 0}
+  carsObstacles: []
+  savedPositions: []
+  xMinRange: 0
+  xMaxRange: 0
+  zMinRange: 0
+  zMaxRange: 0
+  randomRotationRange: 0
+  allowableRotationError: 0
+  allowableDistanceError: 0
+  start: 0
+  stop: 0
+  hit: 0
+  correct: 0
+  correctCount: 0
+  hitCount: 0
+  timeoutCount: 0
+  episode: 0
+--- !u!114 &7122525666549264098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c10ed6784a74540996882c02329586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  targetTransform: {fileID: 0}
+  carController: {fileID: 0}
+  startingSpot: {fileID: 0}
+  observations: {fileID: 0}
+  parkingSpot: {fileID: 0}
+  carsObstacles: []
+  savedPositions: []
+  xMinRange: 0
+  xMaxRange: 0
+  zMinRange: 0
+  zMaxRange: 0
+  randomRotationRange: 0
+  allowableRotationError: 0
+  allowableDistanceError: 0
+  start: 0
+  stop: 0
+  hit: 0
+  correct: 0
+  correctCount: 0
+  hitCount: 0
+  timeoutCount: 0
+  episode: 0
+--- !u!114 &1975657902759675121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3505d783e843cb94c944f0c42a9899d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  targetTransform: {fileID: 0}
+  carController: {fileID: 0}
+  startingSpot: {fileID: 0}
+  observations: {fileID: 0}
+  parkingSpot: {fileID: 0}
+  carsObstacles: []
+  savedPositions: []
+  xMinRange: 0
+  xMaxRange: 0
+  zMinRange: 0
+  zMaxRange: 0
+  randomRotationRange: 0
+  allowableRotationError: 0
+  allowableDistanceError: 0
+--- !u!114 &2956927678329289500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c10ed6784a74540996882c02329586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   agentParameters:
@@ -428,96 +534,14 @@ MonoBehaviour:
   randomRotationRange: 135
   allowableRotationError: 25
   allowableDistanceError: 1.5
---- !u!114 &6501652839121228998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815614871030044812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c492e7bf4c94de94c9a40e6549acf58f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  targetTransform: {fileID: 0}
-  carController: {fileID: 0}
-  startingSpot: {fileID: 0}
-  observations: {fileID: 0}
-  parkingSpot: {fileID: 0}
-  carsObstacles: []
-  savedPositions: []
-  xMinRange: 0
-  xMaxRange: 0
-  zMinRange: 0
-  zMaxRange: 0
-  randomRotationRange: 0
-  allowableRotationError: 0
-  allowableDistanceError: 0
---- !u!114 &7122525666549264098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815614871030044812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7c10ed6784a74540996882c02329586, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  targetTransform: {fileID: 0}
-  carController: {fileID: 0}
-  startingSpot: {fileID: 0}
-  observations: {fileID: 0}
-  parkingSpot: {fileID: 0}
-  carsObstacles: []
-  savedPositions: []
-  xMinRange: 0
-  xMaxRange: 0
-  zMinRange: 0
-  zMaxRange: 0
-  randomRotationRange: 0
-  allowableRotationError: 0
-  allowableDistanceError: 0
---- !u!114 &1975657902759675121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8815614871030044812}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3505d783e843cb94c944f0c42a9899d2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
-  targetTransform: {fileID: 0}
-  carController: {fileID: 0}
-  startingSpot: {fileID: 0}
-  observations: {fileID: 0}
-  parkingSpot: {fileID: 0}
-  carsObstacles: []
-  savedPositions: []
-  xMinRange: 0
-  xMaxRange: 0
-  zMinRange: 0
-  zMaxRange: 0
-  randomRotationRange: 0
-  allowableRotationError: 0
-  allowableDistanceError: 0
+  start: 0
+  stop: 0
+  hit: 0
+  correct: 0
+  correctCount: 0
+  hitCount: 0
+  timeoutCount: 0
+  episode: 0
 --- !u!1 &8848951142523869262
 GameObject:
   m_ObjectHideFlags: 0

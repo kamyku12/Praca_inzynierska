@@ -118,6 +118,10 @@ def main():
         if initializing:
             initializing = initialize(sock)
         else:
+            if paused and not newEpisode:
+                sock.sendall("waitingForUnpause".encode("UTF-8"))
+                # print('Waiting to unpause')
+
             if not paused:
                 if random.random() < random_action:
                     picked_action = random.randint(0, len(actions) - 1)
@@ -138,9 +142,7 @@ def main():
 
                 rewards_memory.append(reward)
 
-            if paused and not newEpisode:
-                sock.sendall("waitingForUnpause".encode("UTF-8"))
-                # print('Waiting to unpause')
+            
 
             if newEpisode:
                 if calculations:

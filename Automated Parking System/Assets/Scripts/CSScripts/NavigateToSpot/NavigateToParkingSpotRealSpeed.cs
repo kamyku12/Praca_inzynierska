@@ -8,13 +8,13 @@ using System.Linq;
 
 public class NavigateToParkingSpotRealSpeed : Agent
 {
-    [SerializeField] private Transform targetTransform;
+    [SerializeField] public Transform targetTransform;
     [SerializeField] private CarControllerMlAgents carController;
     [SerializeField] private Transform startingSpot;
     [SerializeField] private ObservationForRL observations;
-    [SerializeField] private GameObject parkingSpot;
-    [SerializeField] private GameObject[] carsObstacles;
-    [SerializeField] private Transform[] savedPositions;
+    [SerializeField] public GameObject parkingSpot;
+    [SerializeField] public GameObject[] carsObstacles;
+    [SerializeField] public Transform[] savedPositions;
 
 
     public float xMinRange;
@@ -25,11 +25,53 @@ public class NavigateToParkingSpotRealSpeed : Agent
     public float allowableRotationError;
     public float allowableDistanceError;
 
+    // For tests
+    public bool start;
+    public bool stop;
+    public bool hit;
+    public bool correct;
+
+    public int correctCount = 0;
+    public int hitCount = 0;
+    public int timeoutCount = 0;
+    public int episode = 0;
+
+    Vector3 stateCorrect;
+    Vector3 stateCorrectRot;
+
     public override void OnEpisodeBegin()
     {
+        // episode++;
+        // if (correct)
+        // {
+        //     correctCount++;
+        //     correct = false;
+        //     //Debug.Log(stateCorrect);
+        //     //Debug.Log(stateCorrectRot);
+        // }
+        // else if (hit)
+        // {
+        //     hitCount++;
+        //     hit = false;
+        // }
+        // else
+        // {
+        //     timeoutCount++;
+        // }
+
+        // if (episode >= 1000)
+        // {
+        //     Debug.Log($"Correct: {correctCount}\nHit: {hitCount}\nTimeout: {timeoutCount}");
+        //     UnityEditor.EditorApplication.isPlaying = false;
+        // }
+
         carController.ResetValues();
-        transform.position = startingSpot.position + new Vector3(Random.Range(xMinRange, xMaxRange), 0, Random.Range(zMinRange, zMaxRange));
-        transform.rotation = Quaternion.Euler(0, Random.Range(-randomRotationRange, randomRotationRange), 0);
+        Vector3 newPosition = startingSpot.position + new Vector3(Random.Range(xMinRange, xMaxRange), 0, Random.Range(zMinRange, zMaxRange));
+        Quaternion newRotation = Quaternion.Euler(0, Random.Range(-randomRotationRange, randomRotationRange), 0);
+        transform.position = newPosition;
+        stateCorrect = newPosition;
+        stateCorrectRot = newRotation.eulerAngles;
+        transform.rotation = newRotation;
         for (int index = 0; index < carsObstacles.Length; index += 1)
         {
             carsObstacles[index].transform.position = savedPositions[index].position;
@@ -49,6 +91,12 @@ public class NavigateToParkingSpotRealSpeed : Agent
 
         // Add reward after every action taken
         AddReward(-1f / MaxStep);
+
+        // Add penalty for big speed when closer to parking spot
+        if(observations.distance.Sum() <= 10.0f && observations.velocity.magnitude > 2f)
+        {
+            AddReward(-0.1f * observations.velocity.magnitude);
+        }
     }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -101,6 +149,7 @@ public class NavigateToParkingSpotRealSpeed : Agent
                         Debug.Log("Parked correctly");
                         AddReward(5f);
                         EndEpisode();
+                        correct = true;
                     }
                 }
                 else
@@ -124,6 +173,7 @@ public class NavigateToParkingSpotRealSpeed : Agent
             Debug.Log($"HITTED {collision.gameObject.tag.ToUpper()}");
             AddReward(-6f);
             EndEpisode();
+            hit = true;
         }
     }
 }

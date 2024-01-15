@@ -8,13 +8,13 @@ using System.Linq;
 
 public class NavigateToParkingSpotBreaking : Agent
 {
-    [SerializeField] private Transform targetTransform;
+    [SerializeField] public Transform targetTransform;
     [SerializeField] private CarControllerMlAgents carController;
     [SerializeField] private Transform startingSpot;
     [SerializeField] private ObservationForRL observations;
-    [SerializeField] private GameObject parkingSpot;
-    [SerializeField] private GameObject[] carsObstacles;
-    [SerializeField] private Transform[] savedPositions;
+    [SerializeField] public GameObject parkingSpot;
+    [SerializeField] public GameObject[] carsObstacles;
+    [SerializeField] public Transform[] savedPositions;
 
 
     public float xMinRange;
@@ -25,8 +25,35 @@ public class NavigateToParkingSpotBreaking : Agent
     public float allowableRotationError;
     public float allowableDistanceError;
 
+    // For tests
+    public bool start;
+    public bool stop;
+    public bool hit;
+    public bool correct;
+
+    public int correctCount = 0;
+    public int hitCount = 0;
+    public int timeoutCount = 0;
+    public int episode = 0;
+
     public override void OnEpisodeBegin()
     {
+        episode++;
+        if (correct)
+        {
+            correctCount++;
+            correct = false;
+        }
+        else if (hit)
+        {
+            hitCount++;
+            hit = false;
+        }
+        else
+        {
+            timeoutCount++;
+        }
+
         carController.ResetValues();
         transform.position = startingSpot.position + new Vector3(Random.Range(xMinRange, xMaxRange), 0, Random.Range(zMinRange, zMaxRange));
         transform.rotation = Quaternion.Euler(0, Random.Range(-randomRotationRange, randomRotationRange), 0);
@@ -107,6 +134,7 @@ public class NavigateToParkingSpotBreaking : Agent
                         Debug.Log("Parked correctly");
                         AddReward(5f);
                         EndEpisode();
+                        correct = true;
                     }
                 } else
                 {
@@ -129,6 +157,7 @@ public class NavigateToParkingSpotBreaking : Agent
             Debug.Log($"HITTED {collision.gameObject.tag.ToUpper()}");
             AddReward(-6f);
             EndEpisode();
+            hit = true;
         }
     }
 }

@@ -1,0 +1,65 @@
+{
+    "NavigateToSpot": {
+        "checkpoints": [
+            {
+                "steps": 999999,
+                "file_path": "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-999999.onnx",
+                "reward": -3.8247116471330327,
+                "creation_time": 1705338732.9319205,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-999999.pt"
+                ]
+            },
+            {
+                "steps": 1499965,
+                "file_path": "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-1499965.onnx",
+                "reward": -2.867845299343268,
+                "creation_time": 1705339453.5054712,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-1499965.pt"
+                ]
+            },
+            {
+                "steps": 1999998,
+                "file_path": "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-1999998.onnx",
+                "reward": 5.740062514320016,
+                "creation_time": 1705340372.48843,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-1999998.pt"
+                ]
+            },
+            {
+                "steps": 2499994,
+                "file_path": "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-2499994.onnx",
+                "reward": -0.2356764661038623,
+                "creation_time": 1705341334.2824697,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-2499994.pt"
+                ]
+            },
+            {
+                "steps": 2980213,
+                "file_path": "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-2980213.onnx",
+                "reward": -1.4859465029356735,
+                "creation_time": 1705342192.1641335,
+                "auxillary_file_paths": [
+                    "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-2980213.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2980213,
+            "file_path": "results/NavigateToSpotRealSpeed2/NavigateToSpot.onnx",
+            "reward": -1.4859465029356735,
+            "creation_time": 1705342192.1641335,
+            "auxillary_file_paths": [
+                "results/NavigateToSpotRealSpeed2/NavigateToSpot/NavigateToSpot-2980213.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "1.0.0",
+        "torch_version": "2.1.1+cu121"
+    }
+}

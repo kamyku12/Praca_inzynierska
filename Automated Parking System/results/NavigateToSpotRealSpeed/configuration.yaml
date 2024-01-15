@@ -38,9 +38,9 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     even_checkpoints: false
-    max_steps: 30000000
+    max_steps: 35000000
     time_horizon: 64
-    summary_freq: 50000
+    summary_freq: 5000000
     threaded: false
     self_play: null
     behavioral_cloning: null
@@ -68,8 +68,8 @@ checkpoint_settings:
   run_id: NavigateToSpotRealSpeed
   initialize_from: null
   load_model: false
-  resume: false
-  force: true
+  resume: true
+  force: false
   train_model: false
   inference: false
   results_dir: results

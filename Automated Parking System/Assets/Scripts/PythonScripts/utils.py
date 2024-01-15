@@ -147,7 +147,7 @@ def loss_in_epoch(model, criterion, states, y) -> torch.Tensor:
     return loss
 
 
-def training(replay_memory: ReplayMemory, criterion, optimizer, model, target_model, discount_factor):
+def training(ReplayMemory, criterion, optimizer, model, target_model, discount_factor):
     print('training session')
     loss_in_session = []
     for i in range(NUMBER_OF_EPOCHS):
