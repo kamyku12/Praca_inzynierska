@@ -5127,7 +5127,7 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 2000
+  MaxStep: 1000
   targetTransform: {fileID: 797662441596095320}
   carController: {fileID: 6231618369967279956}
   startingSpot: {fileID: 8526520894330179288}
@@ -5172,6 +5172,7 @@ MonoBehaviour:
   randomRotationRange: 135
   allowableRotationError: 25
   allowableDistanceError: 1.5
+  maxSpeedInParking: 0
   start: 0
   stop: 0
   hit: 0

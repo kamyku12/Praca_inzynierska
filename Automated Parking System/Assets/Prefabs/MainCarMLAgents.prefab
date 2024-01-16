@@ -186,6 +186,8 @@ GameObject:
   - component: {fileID: 7122525666549264098}
   - component: {fileID: 1975657902759675121}
   - component: {fileID: 2956927678329289500}
+  - component: {fileID: 8086248991861443335}
+  - component: {fileID: 6878701199804777078}
   m_Layer: 0
   m_Name: MainCarMLAgents
   m_TagString: Car
@@ -398,6 +400,7 @@ MonoBehaviour:
   randomRotationRange: 0
   allowableRotationError: 0
   allowableDistanceError: 0
+  maxSpeedInParking: 0
   start: 0
   stop: 0
   hit: 0
@@ -534,6 +537,113 @@ MonoBehaviour:
   randomRotationRange: 135
   allowableRotationError: 25
   allowableDistanceError: 1.5
+  start: 0
+  stop: 0
+  hit: 0
+  correct: 0
+  correctCount: 0
+  hitCount: 0
+  timeoutCount: 0
+  episode: 0
+--- !u!114 &8086248991861443335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7c10ed6784a74540996882c02329586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 0
+  targetTransform: {fileID: 0}
+  carController: {fileID: 0}
+  startingSpot: {fileID: 0}
+  observations: {fileID: 0}
+  parkingSpot: {fileID: 0}
+  carsObstacles: []
+  savedPositions: []
+  xMinRange: -1
+  xMaxRange: 3
+  zMinRange: -1
+  zMaxRange: 3
+  randomRotationRange: 45
+  allowableRotationError: 35
+  allowableDistanceError: 3
+  start: 0
+  stop: 0
+  hit: 0
+  correct: 0
+  correctCount: 0
+  hitCount: 0
+  timeoutCount: 0
+  episode: 0
+--- !u!114 &6878701199804777078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8815614871030044812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b2cc57289f37b148b10ddf4ae6006be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agentParameters:
+    maxStep: 0
+  hasUpgradedFromAgentParameters: 1
+  MaxStep: 2000
+  targetTransform: {fileID: 0}
+  carController: {fileID: 885236549}
+  startingSpot: {fileID: 0}
+  observations: {fileID: 8526520893583488799}
+  parkingSpot: {fileID: 0}
+  carsObstacles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  savedPositions:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  xMinRange: -1
+  xMaxRange: 3
+  zMinRange: -1
+  zMaxRange: 3
+  randomRotationRange: 100
+  allowableRotationError: 30
+  allowableDistanceError: 2.5
+  maxSpeedInParking: 3
   start: 0
   stop: 0
   hit: 0

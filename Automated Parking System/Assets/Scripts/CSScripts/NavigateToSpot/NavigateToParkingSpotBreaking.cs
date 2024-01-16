@@ -24,7 +24,7 @@ public class NavigateToParkingSpotBreaking : Agent
     public float randomRotationRange;
     public float allowableRotationError;
     public float allowableDistanceError;
-
+    public float maxSpeedInParking;
     // For tests
     public bool start;
     public bool stop;
@@ -95,12 +95,12 @@ public class NavigateToParkingSpotBreaking : Agent
 
         sensor.AddObservation(observations.rotation);
 
-        foreach(float distance in observations.distance)
+        foreach (float distance in observations.distance)
         {
             sensor.AddObservation(distance);
         }
 
-        foreach(float distance in observations.sensorDistances)
+        foreach (float distance in observations.sensorDistances)
         {
             sensor.AddObservation(distance);
         }
@@ -114,7 +114,7 @@ public class NavigateToParkingSpotBreaking : Agent
            other.transform.parent.gameObject.tag == "taken" &&
            other.transform.parent.gameObject.Equals(parkingSpot))
         {
-            if(observations.rotation > allowableRotationError || observations.rotation < -allowableRotationError)
+            if (observations.rotation > allowableRotationError || observations.rotation < -allowableRotationError)
             {
                 Debug.Log("Parked incorrectly");
                 AddReward(1.5f);
@@ -125,25 +125,28 @@ public class NavigateToParkingSpotBreaking : Agent
                 // Is less than 1, it is a correct parking
                 if (observations.distance[0] + observations.distance[1] <= allowableDistanceError)
                 {
-                    if(observations.velocity.magnitude >= 2.0f)
+                    if (observations.velocity.magnitude > maxSpeedInParking)
                     {
                         Debug.Log("Driving to fast");
                         AddReward(4f);
-                    } else
+                    }
+                    else
                     {
                         Debug.Log("Parked correctly");
                         AddReward(5f);
                         EndEpisode();
                         correct = true;
                     }
-                } else
+                }
+                else
                 {
                     Debug.Log("Not deep enough");
                     AddReward(3.5f);
                 }
 
             }
-        } else if(other.tag == "checkpoint")
+        }
+        else if (other.tag == "checkpoint")
         {
             Debug.Log("You are closer to parking spot");
             AddReward(0.5f);

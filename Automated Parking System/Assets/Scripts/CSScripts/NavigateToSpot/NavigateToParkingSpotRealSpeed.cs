@@ -24,6 +24,7 @@ public class NavigateToParkingSpotRealSpeed : Agent
     public float randomRotationRange;
     public float allowableRotationError;
     public float allowableDistanceError;
+    public float maxSpeedInParking;
 
     // For tests
     public bool start;
@@ -41,29 +42,27 @@ public class NavigateToParkingSpotRealSpeed : Agent
 
     public override void OnEpisodeBegin()
     {
-        // episode++;
-        // if (correct)
-        // {
-        //     correctCount++;
-        //     correct = false;
-        //     //Debug.Log(stateCorrect);
-        //     //Debug.Log(stateCorrectRot);
-        // }
-        // else if (hit)
-        // {
-        //     hitCount++;
-        //     hit = false;
-        // }
-        // else
-        // {
-        //     timeoutCount++;
-        // }
+        episode++;
+        if (correct)
+        {
+            correctCount++;
+            correct = false;
+        }
+        else if (hit)
+        {
+            hitCount++;
+            hit = false;
+        }
+        else
+        {
+            timeoutCount++;
+        }
 
-        // if (episode >= 1000)
-        // {
-        //     Debug.Log($"Correct: {correctCount}\nHit: {hitCount}\nTimeout: {timeoutCount}");
-        //     UnityEditor.EditorApplication.isPlaying = false;
-        // }
+        if (episode >= 1000)
+        {
+            Debug.Log($"Correct: {correctCount}\nHit: {hitCount}\nTimeout: {timeoutCount}");
+            UnityEditor.EditorApplication.isPlaying = false;
+        }
 
         carController.ResetValues();
         Vector3 newPosition = startingSpot.position + new Vector3(Random.Range(xMinRange, xMaxRange), 0, Random.Range(zMinRange, zMaxRange));
@@ -93,7 +92,7 @@ public class NavigateToParkingSpotRealSpeed : Agent
         AddReward(-1f / MaxStep);
 
         // Add penalty for big speed when closer to parking spot
-        if(observations.distance.Sum() <= 10.0f && observations.velocity.magnitude > 2f)
+        if(observations.distance.Sum() <= 10.0f && observations.velocity.magnitude > maxSpeedInParking)
         {
             AddReward(-0.1f * observations.velocity.magnitude);
         }
@@ -139,7 +138,7 @@ public class NavigateToParkingSpotRealSpeed : Agent
                 // Is less than 1, it is a correct parking
                 if (observations.distance[0] + observations.distance[1] <= allowableDistanceError)
                 {
-                    if (observations.velocity.magnitude >= 2.0f)
+                    if (observations.velocity.magnitude > maxSpeedInParking)
                     {
                         Debug.Log("Driving to fast");
                         AddReward(4f);
