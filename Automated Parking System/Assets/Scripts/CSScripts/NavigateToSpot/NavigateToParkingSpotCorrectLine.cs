@@ -15,6 +15,7 @@ public class NavigateToParkingSpotCorrectLine : Agent
     [SerializeField] public GameObject parkingSpot;
     [SerializeField] public GameObject[] carsObstacles;
     [SerializeField] public Transform[] savedPositions;
+    [SerializeField] public ParkingSpots parkingSpots;
 
 
     public float xMinRange;
@@ -62,13 +63,15 @@ public class NavigateToParkingSpotCorrectLine : Agent
         carController.ResetValues();
         transform.position = startingSpot.position + new Vector3(Random.Range(xMinRange, xMaxRange), 0, Random.Range(zMinRange, zMaxRange));
         transform.rotation = Quaternion.Euler(0, Random.Range(-randomRotationRange, randomRotationRange), 0);
-        for (int index = 0; index < carsObstacles.Length; index += 1)
+        GameObject[] cars = GameObject.FindGameObjectsWithTag("Car");
+        foreach(var car in cars)
         {
-            carsObstacles[index].transform.position = savedPositions[index].position;
-            carsObstacles[index].transform.rotation = savedPositions[index].rotation;
-            carsObstacles[index].GetComponent<Rigidbody>().velocity = Vector3.zero;
-            carsObstacles[index].GetComponent<Rigidbody>().angularVelocity = Vector3.zero;
+            if(car.layer == 3)
+            {
+                GameObject.Destroy(car);
+            }
         }
+        parkingSpots.PlaceCars();
     }
 
     public override void OnActionReceived(ActionBuffers actions)
